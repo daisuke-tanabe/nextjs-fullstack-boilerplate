@@ -51,8 +51,8 @@ jobs:
 
       - run: pnpm i
       - run: |
-          touch ./packages/database/.env
-          echo "POSTGRES_PRISMA_URL=${POSTGRES_PRISMA_URL}" >> ./packages/database/.env
-          echo "POSTGRES_URL_NON_POOLING=${POSTGRES_URL_NON_POOLING}" >> ./packages/database/.env
+          touch .env
+          echo "POSTGRES_PRISMA_URL=${POSTGRES_PRISMA_URL}" >> .env
+          echo "POSTGRES_URL_NON_POOLING=${POSTGRES_URL_NON_POOLING}" >> .env
           pnpm build
       - run: pnpm test

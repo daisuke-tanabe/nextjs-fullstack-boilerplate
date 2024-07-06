@@ -5,7 +5,8 @@
     "node": "20.x"
   },
   "scripts": {
-    "build": "next build",
+    "build": "run-s migrate build:*",
+    "build:next": "next build",
     "dev": "run-p dev:* migrate",
     "dev:next": "next dev",
     "dev:studio": "prisma studio",
