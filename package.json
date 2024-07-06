@@ -5,14 +5,27 @@
     "node": "20.x"
   },
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "format": "prettier --write \"**/*.{js,ts,jsx,tsx,cjs,mjs,cts,mts,json}\"",
+    "build": "next build",
+    "dev": "run-p dev:* migrate",
+    "dev:next": "next dev",
+    "dev:studio": "prisma studio",
+    "format": "run-p format:*",
+    "format:prettier": "prettier --write \"**/*.{js,ts,jsx,tsx,cjs,mjs,cts,mts,json}\"",
+    "format:prisma": "prisma format",
+    "generate": "run-p generate:*",
+    "generate:prisma": "prisma generate",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint .",
     "lint:secret": "secretlint \"**/*\"",
-    "migrate": "turbo run migrate",
-    "test": "turbo run test"
+    "migrate": "prisma migrate dev",
+    "start": "next start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@prisma/client": "5.16.1",
+    "next": "15.0.0-rc.0",
+    "react": "19.0.0-rc-fb9a90fa48-20240614",
+    "react-dom": "19.0.0-rc-fb9a90fa48-20240614"
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.1.0",
@@ -33,9 +46,9 @@
     "lefthook": "1.6.18",
     "npm-run-all2": "6.2.2",
     "prettier": "3.3.2",
+    "prisma": "5.16.1",
     "secretlint": "8.2.4",
     "ts-jest": "29.1.5",
-    "turbo": "2.0.6",
     "typescript": "5.5.3",
     "typescript-eslint": "8.0.0-alpha.39"
   }

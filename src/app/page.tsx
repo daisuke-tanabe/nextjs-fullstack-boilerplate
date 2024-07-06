@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { prisma } from '@packages/database';
+import { prisma } from '@/lib';
 import styles from './page.module.css';
 
 export default async function Home() {

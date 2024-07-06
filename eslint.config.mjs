@@ -9,10 +9,10 @@ const compat = new FlatCompat();
 
 export default tseslint.config(
   {
-    files: ['apps/web/**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}'],
     languageOptions: {
       parserOptions: {
-        project: ['apps/web/tsconfig.json'],
+        project: true,
         tsconfigRootDir: import.meta.dirname,
       },
       globals: {
@@ -26,32 +26,6 @@ export default tseslint.config(
       ...tseslint.configs.strictTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
       ...compat.extends('next/core-web-vitals'),
-    ],
-    settings: {
-      // Locating the Next.js application
-      // https://nextjs.org/docs/app/building-your-application/configuring/eslint#custom-settings
-      next: {
-        rootDir: 'apps/web',
-      },
-    },
-  },
-
-  {
-    files: ['packages/database/**/*.{ts,tsx}'],
-    languageOptions: {
-      parserOptions: {
-        project: ['packages/database/tsconfig.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      globals: {
-        ...globals.node,
-      },
-    },
-    extends: [
-      eslint.configs.recommended,
-      ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.strictTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
     ],
   },
 

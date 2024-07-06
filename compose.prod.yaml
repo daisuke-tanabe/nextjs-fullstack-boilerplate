@@ -3,7 +3,7 @@ services:
     container_name: web
     build:
       context: .
-      dockerfile: ./apps/web/Dockerfile
+      dockerfile: Dockerfile
       target: prod-runner
     environment:
       NODE_ENV: production

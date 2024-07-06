@@ -2,15 +2,15 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./apps/web/Dockerfile
+      dockerfile: Dockerfile
       target: dev-runner
     develop:
       watch:
         - action: sync
-          path: ./apps/web
-          target: /app/apps/web
+          path: ./src
+          target: /app/src
         - action: rebuild
-          path: ./apps/web/package.json
+          path: ./src/package.json
     command: ["pnpm", "dev"]
     environment:
       NODE_ENV: development
