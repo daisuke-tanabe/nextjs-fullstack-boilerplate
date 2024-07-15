@@ -51,6 +51,6 @@
     "secretlint": "8.2.4",
     "ts-jest": "29.1.5",
     "typescript": "5.5.3",
-    "typescript-eslint": "8.0.0-alpha.41"
+    "typescript-eslint": "8.0.0-alpha.44"
   }
 }
