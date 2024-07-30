@@ -23,7 +23,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@prisma/client": "5.16.2",
+    "@prisma/client": "5.17.0",
     "next": "15.0.0-rc.0",
     "react": "19.0.0-rc-fb9a90fa48-20240614",
     "react-dom": "19.0.0-rc-fb9a90fa48-20240614"
@@ -47,7 +47,7 @@
     "lefthook": "1.7.11",
     "npm-run-all2": "6.2.2",
     "prettier": "3.3.3",
-    "prisma": "5.16.2",
+    "prisma": "5.17.0",
     "secretlint": "8.2.4",
     "ts-jest": "29.2.3",
     "typescript": "5.5.4",
