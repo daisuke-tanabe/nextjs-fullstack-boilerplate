@@ -1,11 +1,9 @@
 import { join } from 'path';
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+export default {
   output: 'standalone',
   experimental: {
     outputFileTracingRoot: join(import.meta.dirname, '../../'),
   },
 };
-
-export default nextConfig;
