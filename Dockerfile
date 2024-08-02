@@ -1,6 +1,4 @@
 FROM node:20.16.0 AS base
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
 
@@ -8,7 +6,7 @@ FROM base AS dev-runner
 WORKDIR /app
 COPY . .
 ENV NODE_ENV=development
-RUN pnpm install
+RUN npm install --legacy-peer-deps
 
 
 FROM base AS prod-runner
@@ -18,7 +16,7 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
-RUN pnpm install
-CMD pnpm start
+RUN npm install --legacy-peer-deps
+CMD npm start
 
 

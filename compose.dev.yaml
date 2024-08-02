@@ -11,7 +11,7 @@ services:
           target: /app/src
         - action: rebuild
           path: ./src/package.json
-    command: ["pnpm", "dev"]
+    command: ["npm", "run", "dev"]
     environment:
       NODE_ENV: development
       TZ: UTC
