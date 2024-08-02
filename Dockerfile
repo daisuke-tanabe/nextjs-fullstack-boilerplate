@@ -6,7 +6,7 @@ FROM base AS dev-runner
 WORKDIR /app
 COPY . .
 ENV NODE_ENV=development
-RUN npm install --legacy-peer-deps
+RUN npm install
 
 
 FROM base AS prod-runner
@@ -16,7 +16,7 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
-RUN npm install --legacy-peer-deps
+RUN npm install
 CMD npm start
 
 
