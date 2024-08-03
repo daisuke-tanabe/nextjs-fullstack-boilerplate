@@ -76,6 +76,17 @@ resource "aws_subnet" "private_subnet_1c" {
   }
 }
 
+resource "aws_ecr_repository" "default" {
+  name                 = var.app_name
+  image_tag_mutability = "MUTABLE"
+  tags = {
+    name = "${var.app_name}-ecr"
+  }
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}
+
 resource "aws_s3_bucket" "bucket-image" {
   bucket = "${var.app_name}-${var.env}-images-${var.aws_sso_profile}"
   tags = {
