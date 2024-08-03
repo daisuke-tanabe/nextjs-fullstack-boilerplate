@@ -19,6 +19,7 @@
     "lint:eslint": "eslint .",
     "lint:secret": "secretlint \"**/*\"",
     "migrate": "prisma migrate dev",
+    "postinstall": "npm run generate",
     "start": "next start",
     "test": "jest"
   },

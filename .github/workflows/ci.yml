@@ -94,14 +94,6 @@ jobs:
           echo "POSTGRES_URL_NON_POOLING=${POSTGRES_URL_NON_POOLING}" >> .env
           npm run build
 
-      - name: Cache Save production
-        if: steps.cache-restore-production.outputs.cache-hit != 'true'
-        id: cache-save-production
-        uses: actions/cache/save@v4
-        with:
-          path: node_modules
-          key: production-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-
   test:
     needs: build
     runs-on: ubuntu-latest
@@ -113,12 +105,12 @@ jobs:
         with:
           node-version-file: .tool-versions
 
-      - name: Cache Restore production
-        id: cache-restore-production
+      - name: Cache Restore
+        id: cache-restore-depends
         uses: actions/cache/restore@v4
         with:
           path: node_modules
-          key: production-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Test
         run: npm test
