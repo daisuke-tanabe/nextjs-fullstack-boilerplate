@@ -34,8 +34,29 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
-  build:
+  lint:
     needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+
+      - name: Cache Restore
+        id: cache-restore-depends
+        uses: actions/cache/restore@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Lint
+        run: npm run lint
+
+  build:
+    needs: lint
     runs-on: ubuntu-latest
     env:
       POSTGRES_PRISMA_URL: postgresql://postgres:postgres@localhost:5432/mydb
@@ -73,29 +94,16 @@ jobs:
           echo "POSTGRES_URL_NON_POOLING=${POSTGRES_URL_NON_POOLING}" >> .env
           npm run build
 
-  lint:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .tool-versions
-
-      - name: Cache Restore
-        id: cache-restore-depends
-        uses: actions/cache/restore@v4
+      - name: Cache Save production
+        if: steps.cache-restore-production.outputs.cache-hit != 'true'
+        id: cache-save-production
+        uses: actions/cache/save@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-
-      - name: Lint
-        run: npm run lint
+          key: production-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
   test:
-    needs: [lint, build]
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -105,12 +113,12 @@ jobs:
         with:
           node-version-file: .tool-versions
 
-      - name: Cache Restore
-        id: cache-restore-depends
+      - name: Cache Restore production
+        id: cache-restore-production
         uses: actions/cache/restore@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: production-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Test
         run: npm test
