@@ -5,12 +5,41 @@ on:
   - pull_request
 
 jobs:
-  test:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+
+      - name: Cache Restore
+        id: cache-restore-depends
+        uses: actions/cache/restore@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.cache-restore-depends.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Cache Save
+        if: steps.cache-restore-depends.outputs.cache-hit != 'true'
+        id: cache-save-depends
+        uses: actions/cache/save@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+  build:
+    needs: setup
     runs-on: ubuntu-latest
     env:
       POSTGRES_PRISMA_URL: postgresql://postgres:postgres@localhost:5432/mydb
       POSTGRES_URL_NON_POOLING: postgresql://postgres:postgres@localhost:5432/mydb
-
     services:
       database:
         image: postgres:16.3
@@ -22,7 +51,6 @@ jobs:
           TZ: UTC
         ports:
           - 5432:5432
-
     steps:
       - uses: actions/checkout@v4
 
@@ -31,16 +59,58 @@ jobs:
         with:
           node-version-file: .tool-versions
 
-      - name: cache dependencies
-        uses: actions/cache@v4
+      - name: Cache Restore
+        id: cache-restore-depends
+        uses: actions/cache/restore@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
-      - run: npm install --legacy-peer-deps
-      - run: |
+      - name: Build
+        run: |
           touch .env
           echo "POSTGRES_PRISMA_URL=${POSTGRES_PRISMA_URL}" >> .env
           echo "POSTGRES_URL_NON_POOLING=${POSTGRES_URL_NON_POOLING}" >> .env
           npm run build
-      - run: npm test
+
+  lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+
+      - name: Cache Restore
+        id: cache-restore-depends
+        uses: actions/cache/restore@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Lint
+        run: npm run lint
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+
+      - name: Cache Restore
+        id: cache-restore-depends
+        uses: actions/cache/restore@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Test
+        run: npm test
