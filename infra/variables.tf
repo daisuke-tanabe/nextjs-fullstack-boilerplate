@@ -1,15 +1,8 @@
-variable "aws_sso_profile" {
-  type        = string
-}
+variable "app_name" {}
+variable "env" {}
 
-variable "aws_region" {
-  type        = string
-}
+# aws
+variable "aws_sso_profile" {}
+variable "aws_region" {}
+variable "aws_vpc_cidr" {}
 
-variable "env" {
-  type        = string
-}
-
-variable "app_name" {
-  type        = string
-}
