@@ -3,7 +3,7 @@ terraform {
 
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "5.61.0"
     }
   }
@@ -11,5 +11,9 @@ terraform {
 
 provider "aws" {
   profile = "daisuke-tanabe"
-  region = "ap-northeast-1"
+  region  = "ap-northeast-1"
+}
+
+resource "aws_s3_bucket" "bucket-image" {
+  bucket = "nextjs-fullstack-boilerplate-s3-image"
 }
