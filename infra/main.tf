@@ -27,6 +27,31 @@ resource "aws_vpc" "this" {
   }
 }
 
+resource "aws_internet_gateway" "this" {
+  vpc_id = aws_vpc.this.id
+  tags = {
+    name = "${var.app_name}-igw"
+  }
+}
+
+resource "aws_subnet" "public_subnet_1a" {
+  vpc_id                  = aws_vpc.this.id
+  availability_zone       = "${var.aws_region}a"
+  cidr_block              = cidrsubnet(var.aws_vpc_cidr, 8, 11)
+  tags = {
+    "Name" = "${var.app_name}-public-subnet-1a"
+  }
+}
+
+resource "aws_subnet" "public_subnet_1c" {
+  vpc_id                  = aws_vpc.this.id
+  availability_zone       = "${var.aws_region}c"
+  cidr_block              = cidrsubnet(var.aws_vpc_cidr, 8, 12)
+  tags = {
+    "Name" = "${var.app_name}-public-subnet-1c"
+  }
+}
+
 resource "aws_s3_bucket" "bucket-image" {
   bucket = "${var.app_name}-${var.env}-images-${var.aws_sso_profile}"
   tags = {
