@@ -1,0 +1,5 @@
+aws_sso_profile="AWS_SSO_PROFILE"
+aws_region="AWS_REGION"
+
+app_name="APP_NAME"
+env="dev or prod"

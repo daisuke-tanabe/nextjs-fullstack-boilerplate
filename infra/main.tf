@@ -10,10 +10,10 @@ terraform {
 }
 
 provider "aws" {
-  profile = "daisuke-tanabe"
-  region  = "ap-northeast-1"
+  profile = var.aws_sso_profile
+  region  = var.aws_region
 }
 
 resource "aws_s3_bucket" "bucket-image" {
-  bucket = "nextjs-fullstack-boilerplate-s3-image"
+  bucket = "${var.app_name}-${var.env}-images-${var.aws_sso_profile}"
 }
