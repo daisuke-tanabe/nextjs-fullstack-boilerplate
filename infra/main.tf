@@ -23,6 +23,7 @@ provider "aws" {
 resource "aws_vpc" "this" {
   cidr_block = var.aws_vpc_cidr
   tags = {
+    Name = "${var.app_name}-vpc"
     name = "${var.app_name}-vpc"
   }
 }
@@ -30,6 +31,7 @@ resource "aws_vpc" "this" {
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
   tags = {
+    Name = "${var.app_name}-igw"
     name = "${var.app_name}-igw"
   }
 }
@@ -39,7 +41,8 @@ resource "aws_subnet" "public_subnet_1a" {
   availability_zone       = "${var.aws_region}a"
   cidr_block              = cidrsubnet(var.aws_vpc_cidr, 8, 11)
   tags = {
-    name = "${var.app_name}-public-subnet-1a"
+    Name = "${var.app_name}-public-subnet-1a"
+    name = "${var.app_name}-public-subnet"
   }
 }
 
@@ -48,7 +51,8 @@ resource "aws_subnet" "public_subnet_1c" {
   availability_zone       = "${var.aws_region}c"
   cidr_block              = cidrsubnet(var.aws_vpc_cidr, 8, 12)
   tags = {
-    name = "${var.app_name}-public-subnet-1c"
+    Name = "${var.app_name}-public-subnet-1c"
+    name = "${var.app_name}-public-subnet"
   }
 }
 
@@ -57,7 +61,8 @@ resource "aws_subnet" "private_subnet_1a" {
   availability_zone       = "${var.aws_region}a"
   cidr_block              = cidrsubnet(var.aws_vpc_cidr, 8, 21)
   tags = {
-    name = "${var.app_name}-private-subnet-1a"
+    Name = "${var.app_name}-private-subnet-1a"
+    name = "${var.app_name}-private-subnet"
   }
 }
 
@@ -66,7 +71,8 @@ resource "aws_subnet" "private_subnet_1c" {
   availability_zone       = "${var.aws_region}c"
   cidr_block              = cidrsubnet(var.aws_vpc_cidr, 8, 22)
   tags = {
-    name = "${var.app_name}-private-subnet-1c"
+    Name = "${var.app_name}-private-subnet-1c"
+    name = "${var.app_name}-private-subnet"
   }
 }
 
