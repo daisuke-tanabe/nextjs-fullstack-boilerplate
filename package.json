@@ -5,22 +5,15 @@
     "node": "20.x"
   },
   "scripts": {
-    "build": "run-s migrate build:*",
-    "build:next": "next build",
-    "dev": "run-p dev:* migrate",
-    "dev:next": "next dev",
-    "dev:studio": "prisma studio",
-    "format": "run-p format:*",
+    "build": "next build",
+    "dev": "prisma migrate dev && next dev -p 80",
     "format:prettier": "prettier --write \"**/*.{js,ts,jsx,tsx,cjs,mjs,cts,mts,json}\"",
     "format:prisma": "prisma format",
-    "generate": "run-p generate:*",
-    "generate:prisma": "prisma generate",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint .",
     "lint:secret": "secretlint \"**/*\"",
-    "migrate": "prisma migrate dev",
-    "postinstall": "npm run generate",
-    "start": "next start",
+    "postinstall": "prisma generate",
+    "start": "node server.js",
     "test": "jest"
   },
   "dependencies": {

@@ -1,11 +1,11 @@
 services:
   web:
-    container_name: web
     build:
       context: .
       dockerfile: Dockerfile
       target: prod-runner
     environment:
       NODE_ENV: production
+      TZ: UTC
     ports:
-      - 3000:3000
+      - ${PORT}:${PORT}
