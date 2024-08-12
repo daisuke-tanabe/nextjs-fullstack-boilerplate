@@ -63,7 +63,7 @@ jobs:
       POSTGRES_URL_NON_POOLING: postgresql://postgres:postgres@localhost:5432/mydb
     services:
       database:
-        image: postgres:16.3
+        image: postgres:16.4
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
