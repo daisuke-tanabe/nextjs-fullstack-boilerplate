@@ -44,7 +44,7 @@
     "jest-environment-jsdom": "29.7.0",
     "lefthook": "1.7.18",
     "npm-run-all2": "6.2.2",
-    "postcss": "8.4.45",
+    "postcss": "8.4.47",
     "prettier": "3.3.3",
     "prisma": "5.18.0",
     "secretlint": "8.2.4",
