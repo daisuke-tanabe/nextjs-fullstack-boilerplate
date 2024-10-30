@@ -47,3 +47,7 @@ build
 
 # .tfvars files
 *.tfvars
+
+# Supabase
+.branches
+.temp

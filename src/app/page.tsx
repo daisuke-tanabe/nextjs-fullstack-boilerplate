@@ -1,11 +1,15 @@
 import Image from 'next/image';
+import { prisma } from '@/lib';
 import styles from './page.module.css';
 
-export default function Home() {
+export default async function Home() {
+  const result = await prisma.user.count();
+
   return (
     <main className={styles.main}>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <div className={styles.description}>
+        <div>user: {result}</div>
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>
