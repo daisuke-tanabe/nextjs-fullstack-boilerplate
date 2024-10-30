@@ -1,17 +1,11 @@
 import Image from 'next/image';
-import { Button } from '@nextui-org/button';
-import { prisma } from '@/lib';
 import styles from './page.module.css';
 
-export default async function Home() {
-  const result = await prisma.user.count();
-
+export default function Home() {
   return (
     <main className={styles.main}>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Button>Press me</Button>
       <div className={styles.description}>
-        <div>user: {result}</div>
         <p>
           Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>
