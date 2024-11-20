@@ -28,7 +28,7 @@
     "react-dom": "18.3.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "3.1.0",
+    "@eslint/eslintrc": "3.2.0",
     "@eslint/js": "9.14.0",
     "@secretlint/secretlint-rule-preset-recommend": "9.0.0",
     "@testing-library/dom": "10.4.0",
