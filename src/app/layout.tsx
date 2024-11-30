@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { Button, Navbar, NavbarBrand, NavbarContent, NextUIProvider } from '@nextui-org/react';
+import { Navbar, NavbarBrand, NavbarContent, NextUIProvider } from '@nextui-org/react';
 import './globals.css';
 import Image from 'next/image';
+import { Signout } from '@/app/_components/Signout';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,12 +26,7 @@ export default function RootLayout({
               <Image src="/vercel.svg" alt="Next.js Logo" width={97} height={22} priority />
             </NavbarBrand>
             <NavbarContent justify="end">
-              <Button className="text-default-500" radius="full" variant="light">
-                Login
-              </Button>
-              <Button className="text-default-500" radius="full" variant="light">
-                Signup
-              </Button>
+              <Signout />
             </NavbarContent>
           </Navbar>
           <main className="p-6">{children}</main>
