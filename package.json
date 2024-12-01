@@ -15,7 +15,8 @@
     "lint:secret": "secretlint \"**/*\"",
     "postinstall": "dotenv -e .env.development.local -- prisma generate",
     "start": "node server.js",
-    "test": "jest"
+    "test": "jest",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@nextui-org/react": "2.4.8",

@@ -2,7 +2,7 @@
 
 import { Button } from '@nextui-org/react';
 
-import { signout } from './actions';
+import { signout } from '@/app/_actions/signout';
 
 export function Signout() {
   return (
