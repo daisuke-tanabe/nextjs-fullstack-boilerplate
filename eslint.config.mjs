@@ -27,6 +27,9 @@ export default tseslint.config(
       ...tseslint.configs.stylisticTypeChecked,
       ...compat.extends('next/core-web-vitals'),
     ],
+    rules: {
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    },
   },
 
   {
