@@ -23,10 +23,10 @@ export async function NavigationHeader() {
         ) : (
           <>
             <Button as={NextLink} href="/login" className="text-default-500" radius="full" variant="light">
-              Login
+              Log&nbsp;In
             </Button>
             <Button as={NextLink} href="/signup" className="text-default-500" radius="full" variant="light">
-              Signup
+              Sign&nbsp;Up
             </Button>
           </>
         )}
