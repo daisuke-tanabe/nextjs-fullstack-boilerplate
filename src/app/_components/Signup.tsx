@@ -4,8 +4,8 @@ import { Button, Input } from '@nextui-org/react';
 import { useActionState } from 'react';
 
 type UserPayload = {
-  id: string | null;
-  email: string | null;
+  id: string | undefined;
+  email: string | undefined;
 };
 
 type ErrorPayload = {

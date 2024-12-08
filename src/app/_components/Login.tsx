@@ -5,7 +5,7 @@ import { Button, Input } from '@nextui-org/react';
 
 type UserPayload = {
   id: string;
-  email: string;
+  email: string | undefined;
 };
 
 type ErrorPayload = {
