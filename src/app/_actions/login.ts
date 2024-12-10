@@ -14,7 +14,7 @@ type User = {
 type Error = {
   error: {
     message: string;
-    status?: number;
+    status?: number | undefined;
   };
 };
 

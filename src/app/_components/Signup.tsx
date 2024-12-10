@@ -1,17 +1,16 @@
 'use client';
 
 import { Button, Checkbox, Divider, Input, Link } from '@nextui-org/react';
-import { useActionState } from 'react';
 import { Icon } from '@iconify/react';
 import NextLink from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
-type UserPayload = {
+type User = {
   id: string | undefined;
   email: string | undefined;
 };
 
-type ErrorPayload = {
+type Error = {
   error: {
     message: string;
     status?: number;
@@ -19,13 +18,16 @@ type ErrorPayload = {
 };
 
 export function Signup({
-  action,
+  formState,
+  formAction,
+  isFormLoading,
 }: {
-  action: (prevState: unknown, formData: FormData) => Promise<UserPayload | ErrorPayload>;
+  formState: User | Error | null;
+  formAction: (payload: FormData) => void;
+  isFormLoading: boolean;
 }) {
   const searchParams = useSearchParams();
   const fromParam = searchParams.get('from');
-  const [formState, formAction, isFormLoading] = useActionState(action, null);
   const loginPath = `/login?from=${fromParam ?? '/'}`;
 
   return (

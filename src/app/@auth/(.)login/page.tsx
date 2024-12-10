@@ -33,7 +33,7 @@ export default function Page() {
                 <div className="flex flex-col items-center gap-4 mb-6">
                   <Icon icon="qlementine-icons:success-16" className="text-green-500" width={36} />
                   <div className="flex flex-col items-center gap-2">
-                    <p className="text-2xl font-semibold">Login&nbsp;Successful</p>
+                    <p className="text-2xl font-semibold">Log&nbsp;In&nbsp;Successful</p>
                     <p className="text-sm">You have successfully signed into your account</p>
                   </div>
                 </div>

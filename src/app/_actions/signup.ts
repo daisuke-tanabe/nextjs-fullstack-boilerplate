@@ -5,7 +5,19 @@ import { authErrorMessages } from '@/utils/supabase/authErrorMessages';
 
 type Code = keyof typeof authErrorMessages;
 
-export async function signup(prevState: unknown, formData: FormData) {
+type User = {
+  id: string | undefined;
+  email: string | undefined;
+};
+
+type Error = {
+  error: {
+    message: string;
+    status?: number | undefined;
+  };
+};
+
+export async function signup(prevState: unknown, formData: FormData): Promise<User | Error> {
   const supabase = await createClient();
 
   const { data, error } = await supabase.auth.signUp({
