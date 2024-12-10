@@ -1,16 +1,15 @@
 'use client';
 
-import { useActionState } from 'react';
 import { Button, Divider, Input, Link } from '@nextui-org/react';
 import { Icon } from '@iconify/react';
 import NextLink from 'next/link';
 
-type UserPayload = {
+type User = {
   id: string;
   email: string | undefined;
 };
 
-type ErrorPayload = {
+type Error = {
   error: {
     message: string;
     status?: number;
@@ -18,12 +17,14 @@ type ErrorPayload = {
 };
 
 export function Login({
-  action,
+  formState,
+  formAction,
+  isFormLoading,
 }: {
-  action: (prevState: unknown, formData: FormData) => Promise<UserPayload | ErrorPayload>;
+  formState: User | Error | null;
+  formAction: (payload: FormData) => void;
+  isFormLoading: boolean;
 }) {
-  const [formState, formAction, isFormLoading] = useActionState(action, null);
-
   return (
     <div className="flex flex-col gap-4">
       <form className="flex flex-col gap-3" action={formAction} noValidate>
