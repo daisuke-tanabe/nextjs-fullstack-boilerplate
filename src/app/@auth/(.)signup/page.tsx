@@ -1,25 +1,42 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Button, Modal, ModalBody, ModalContent } from '@nextui-org/react';
+import { Button, Link, Modal, ModalBody, ModalContent } from '@nextui-org/react';
 
 import { Signup } from '@/app/_components/Signup';
 import { signup } from '@/app/_actions/signup';
-import { useActionState } from 'react';
+import { Suspense, useActionState } from 'react';
 import { Icon } from '@iconify/react';
+import NextLink from 'next/link';
 
-export default function LoginPage() {
-  const searchParams = useSearchParams();
+type User = {
+  id: string | undefined;
+  email: string | undefined;
+};
+
+type Error = {
+  error: {
+    message: string;
+    status?: number;
+  };
+};
+
+function SignupModal({
+  formState,
+  formAction,
+  isFormLoading,
+}: {
+  formState: User | Error | null;
+  formAction: (payload: FormData) => void;
+  isFormLoading: boolean;
+}) {
   const router = useRouter();
-  const [formState, formAction, isFormLoading] = useActionState(signup, null);
+  const searchParams = useSearchParams();
   const fromParam = searchParams.get('from');
+  const loginPath = `/login?from=${fromParam ?? '/'}`;
 
   const handleClose = () => {
-    if (!fromParam) {
-      router.push('/');
-      return;
-    }
-    router.push(fromParam);
+    router.push(fromParam ?? '/');
   };
 
   return (
@@ -54,11 +71,27 @@ export default function LoginPage() {
                   <p className="text-sm">Sign up for a new account to get started</p>
                 </div>
                 <Signup formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
+                <p className="text-center text-small mt-4">
+                  Already have an account?&nbsp;
+                  <Link as={NextLink} href={loginPath} size="sm">
+                    Log In
+                  </Link>
+                </p>
               </>
             )}
           </div>
         </ModalBody>
       </ModalContent>
     </Modal>
+  );
+}
+
+export default function LoginPage() {
+  const [formState, formAction, isFormLoading] = useActionState(signup, null);
+
+  return (
+    <Suspense>
+      <SignupModal formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
+    </Suspense>
   );
 }

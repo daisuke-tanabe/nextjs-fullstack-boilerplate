@@ -2,25 +2,42 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 
-import { Button, Modal, ModalBody, ModalContent } from '@nextui-org/react';
+import { Button, Link, Modal, ModalBody, ModalContent } from '@nextui-org/react';
 
 import { login } from '@/app/_actions/login';
 import { Login } from '@/app/_components/Login';
-import { useActionState } from 'react';
+import { Suspense, useActionState } from 'react';
 import { Icon } from '@iconify/react';
+import NextLink from 'next/link';
 
-export default function Page() {
-  const searchParams = useSearchParams();
+type User = {
+  id: string;
+  email: string | undefined;
+};
+
+type Error = {
+  error: {
+    message: string;
+    status?: number | undefined;
+  };
+};
+
+function LoginModal({
+  formState,
+  formAction,
+  isFormLoading,
+}: {
+  formState: User | Error | null;
+  formAction: (payload: FormData) => void;
+  isFormLoading: boolean;
+}) {
   const router = useRouter();
-  const [formState, formAction, isFormLoading] = useActionState(login, null);
+  const searchParams = useSearchParams();
   const fromParam = searchParams.get('from');
+  const signupPath = `/signup?from=${fromParam ?? '/'}`;
 
   const handleClose = () => {
-    if (!fromParam) {
-      router.push('/');
-      return;
-    }
-    router.push(fromParam);
+    router.push(fromParam ?? '/');
   };
 
   return (
@@ -51,11 +68,27 @@ export default function Page() {
                   <p className="text-sm">Log in to your account to continue</p>
                 </div>
                 <Login formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
+                <p className="text-center text-small mt-4">
+                  Need to create an account?&nbsp;
+                  <Link as={NextLink} href={signupPath} size="sm">
+                    Sign Up
+                  </Link>
+                </p>
               </>
             )}
           </div>
         </ModalBody>
       </ModalContent>
     </Modal>
+  );
+}
+
+export default function Page() {
+  const [formState, formAction, isFormLoading] = useActionState(login, null);
+
+  return (
+    <Suspense>
+      <LoginModal formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
+    </Suspense>
   );
 }

@@ -2,8 +2,6 @@
 
 import { Button, Checkbox, Divider, Input, Link } from '@nextui-org/react';
 import { Icon } from '@iconify/react';
-import NextLink from 'next/link';
-import { useSearchParams } from 'next/navigation';
 
 type User = {
   id: string | undefined;
@@ -26,10 +24,6 @@ export function Signup({
   formAction: (payload: FormData) => void;
   isFormLoading: boolean;
 }) {
-  const searchParams = useSearchParams();
-  const fromParam = searchParams.get('from');
-  const loginPath = `/login?from=${fromParam ?? '/'}`;
-
   return (
     <div className="flex flex-col gap-4">
       <form className="flex flex-col gap-3" action={formAction} noValidate>
@@ -82,12 +76,6 @@ export function Signup({
           <Icon icon="simple-icons:apple" width={24} />
         </Button>
       </div>
-      <p className="text-center text-small">
-        Already have an account?&nbsp;
-        <Link as={NextLink} href={loginPath} size="sm">
-          Log In
-        </Link>
-      </p>
     </div>
   );
 }
