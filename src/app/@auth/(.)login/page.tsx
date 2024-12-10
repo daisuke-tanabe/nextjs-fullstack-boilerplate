@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 import { Button, Modal, ModalBody, ModalContent } from '@nextui-org/react';
 
@@ -10,11 +10,17 @@ import { useActionState } from 'react';
 import { Icon } from '@iconify/react';
 
 export default function Page() {
+  const searchParams = useSearchParams();
   const router = useRouter();
   const [formState, formAction, isFormLoading] = useActionState(login, null);
+  const fromParam = searchParams.get('from');
 
   const handleClose = () => {
-    router.back();
+    if (!fromParam) {
+      router.push('/');
+      return;
+    }
+    router.push(fromParam);
   };
 
   return (

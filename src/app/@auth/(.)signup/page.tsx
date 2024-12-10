@@ -1,23 +1,26 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Modal, ModalBody, ModalContent } from '@nextui-org/react';
 
 import { Signup } from '@/app/_components/Signup';
 import { signup } from '@/app/_actions/signup';
 
 export default function LoginPage() {
+  const searchParams = useSearchParams();
   const router = useRouter();
+  const fromParam = searchParams.get('from');
+
+  const handleClose = () => {
+    if (!fromParam) {
+      router.push('/');
+      return;
+    }
+    router.push(fromParam);
+  };
 
   return (
-    <Modal
-      size="sm"
-      placement="top"
-      defaultOpen
-      onClose={() => {
-        router.back();
-      }}
-    >
+    <Modal size="sm" placement="top" defaultOpen onClose={handleClose}>
       <ModalContent>
         <ModalBody className="py-16 pb-8">
           <div className="flex flex-col items-center gap-3 mb-4">

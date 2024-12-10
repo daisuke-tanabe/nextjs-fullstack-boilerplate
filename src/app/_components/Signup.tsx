@@ -4,6 +4,7 @@ import { Button, Checkbox, Divider, Input, Link } from '@nextui-org/react';
 import { useActionState } from 'react';
 import { Icon } from '@iconify/react';
 import NextLink from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 type UserPayload = {
   id: string | undefined;
@@ -22,7 +23,10 @@ export function Signup({
 }: {
   action: (prevState: unknown, formData: FormData) => Promise<UserPayload | ErrorPayload>;
 }) {
+  const searchParams = useSearchParams();
+  const fromParam = searchParams.get('from');
   const [formState, formAction, isFormLoading] = useActionState(action, null);
+  const loginPath = `/login?from=${fromParam ?? '/'}`;
 
   return (
     <div className="flex flex-col gap-4">
@@ -78,7 +82,7 @@ export function Signup({
       </div>
       <p className="text-center text-small">
         Already have an account?&nbsp;
-        <Link as={NextLink} href="/login" size="sm">
+        <Link as={NextLink} href={loginPath} size="sm">
           Log In
         </Link>
       </p>

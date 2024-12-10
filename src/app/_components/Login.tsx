@@ -3,6 +3,7 @@
 import { Button, Divider, Input, Link } from '@nextui-org/react';
 import { Icon } from '@iconify/react';
 import NextLink from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 type User = {
   id: string;
@@ -25,6 +26,10 @@ export function Login({
   formAction: (payload: FormData) => void;
   isFormLoading: boolean;
 }) {
+  const searchParams = useSearchParams();
+  const fromParam = searchParams.get('from');
+  const signupPath = `/signup?from=${fromParam ?? '/'}`;
+
   return (
     <div className="flex flex-col gap-4">
       <form className="flex flex-col gap-3" action={formAction} noValidate>
@@ -74,7 +79,7 @@ export function Login({
       </div>
       <p className="text-center text-small">
         Need to create an account?&nbsp;
-        <Link as={NextLink} href="/signup" size="sm">
+        <Link as={NextLink} href={signupPath} size="sm">
           Sign Up
         </Link>
       </p>
