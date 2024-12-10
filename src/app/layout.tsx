@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 
 export default function Layout({
   children,
-  modal,
+  auth,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
+  auth: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -24,7 +24,7 @@ export default function Layout({
         <NextUIProvider>
           <NavigationHeader />
           <main className="p-6">{children}</main>
-          {modal}
+          {auth}
         </NextUIProvider>
       </body>
     </html>
