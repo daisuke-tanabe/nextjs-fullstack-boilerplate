@@ -3,13 +3,12 @@
 import { Navbar, NavbarBrand, NavbarContent } from '@nextui-org/react';
 import NextLink from 'next/link';
 import { PropsWithChildren } from 'react';
-import { usePathname, useSelectedLayoutSegment } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 export function NavigationHeader({ children }: PropsWithChildren) {
   const pathname = usePathname();
-  const segment = useSelectedLayoutSegment();
 
-  if (pathname === '/signup' || segment === 'signup') return null;
+  if (pathname === '/signup') return null;
 
   return (
     <Navbar maxWidth="full" isBordered>

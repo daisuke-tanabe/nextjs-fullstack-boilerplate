@@ -74,7 +74,7 @@ export function Login({
       </div>
       <p className="text-center text-small">
         Need to create an account?&nbsp;
-        <Link as={NextLink} href="/signup" size="sm">
+        <Link as="a" href="/signup" size="sm">
           Sign Up
         </Link>
       </p>

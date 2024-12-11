@@ -2,7 +2,6 @@
 
 import { Button, Checkbox, Divider, Input, Link } from '@nextui-org/react';
 import { Icon } from '@iconify/react';
-import NextLink from 'next/link';
 
 type User = {
   id: string | undefined;
@@ -87,7 +86,7 @@ export function Signup({
       </div>
       <p className="text-center text-small">
         Already have an account?&nbsp;
-        <Link as={NextLink} href="/login?from=/signup&return=/" size="sm">
+        <Link as="a" href="/login" size="sm">
           Log In
         </Link>
       </p>

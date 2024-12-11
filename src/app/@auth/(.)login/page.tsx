@@ -33,14 +33,9 @@ function LoginModal({
   const router = useRouter();
   const searchParams = useSearchParams();
   const fromParam = searchParams.get('from');
-  const returnParam = searchParams.get('return');
 
   const handleClose = () => {
     router.push(fromParam ?? '/');
-  };
-
-  const handleDone = () => {
-    router.push(returnParam ?? fromParam ?? '/');
   };
 
   return (
@@ -57,7 +52,7 @@ function LoginModal({
                     <p className="text-sm">You have successfully signed into your account</p>
                   </div>
                 </div>
-                <Button className="block mx-auto" variant="bordered" size="lg" onClick={handleDone}>
+                <Button className="block mx-auto" variant="bordered" size="lg" onClick={handleClose}>
                   Done
                 </Button>
               </>
