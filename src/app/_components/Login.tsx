@@ -72,6 +72,12 @@ export function Login({
           <Icon icon="simple-icons:apple" width={24} />
         </Button>
       </div>
+      <p className="text-center text-small">
+        Need to create an account?&nbsp;
+        <Link as={NextLink} href="/signup" size="sm">
+          Sign Up
+        </Link>
+      </p>
     </div>
   );
 }

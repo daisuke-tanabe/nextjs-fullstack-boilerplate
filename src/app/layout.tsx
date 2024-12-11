@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import { NextUIProvider } from '@nextui-org/react';
 import './globals.css';
 import { NavigationHeader } from '@/app/_components/NavigationHeader';
+import { NavigationHeaderMenu } from '@/app/_components/NavigationHeaderMenu';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,8 +23,10 @@ export default function Layout({
     <html lang="en">
       <body className={inter.className}>
         <NextUIProvider>
-          <NavigationHeader />
-          <main className="p-6">{children}</main>
+          <NavigationHeader>
+            <NavigationHeaderMenu />
+          </NavigationHeader>
+          {children}
           {auth}
         </NextUIProvider>
       </body>

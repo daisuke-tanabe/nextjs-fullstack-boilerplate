@@ -2,13 +2,12 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 
-import { Button, Link, Modal, ModalBody, ModalContent } from '@nextui-org/react';
+import { Button, Modal, ModalBody, ModalContent } from '@nextui-org/react';
 
 import { login } from '@/app/_actions/login';
 import { Login } from '@/app/_components/Login';
 import { Suspense, useActionState } from 'react';
 import { Icon } from '@iconify/react';
-import NextLink from 'next/link';
 
 type User = {
   id: string;
@@ -34,10 +33,14 @@ function LoginModal({
   const router = useRouter();
   const searchParams = useSearchParams();
   const fromParam = searchParams.get('from');
-  const signupPath = `/signup?from=${fromParam ?? '/'}`;
+  const returnParam = searchParams.get('return');
 
   const handleClose = () => {
     router.push(fromParam ?? '/');
+  };
+
+  const handleDone = () => {
+    router.push(returnParam ?? fromParam ?? '/');
   };
 
   return (
@@ -54,7 +57,7 @@ function LoginModal({
                     <p className="text-sm">You have successfully signed into your account</p>
                   </div>
                 </div>
-                <Button className="block mx-auto" variant="bordered" size="lg" onClick={handleClose}>
+                <Button className="block mx-auto" variant="bordered" size="lg" onClick={handleDone}>
                   Done
                 </Button>
               </>
@@ -68,12 +71,6 @@ function LoginModal({
                   <p className="text-sm">Log in to your account to continue</p>
                 </div>
                 <Login formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
-                <p className="text-center text-small mt-4">
-                  Need to create an account?&nbsp;
-                  <Link as={NextLink} href={signupPath} size="sm">
-                    Sign Up
-                  </Link>
-                </p>
               </>
             )}
           </div>

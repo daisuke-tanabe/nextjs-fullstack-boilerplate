@@ -2,6 +2,7 @@
 
 import { Button, Checkbox, Divider, Input, Link } from '@nextui-org/react';
 import { Icon } from '@iconify/react';
+import NextLink from 'next/link';
 
 type User = {
   id: string | undefined;
@@ -45,6 +46,14 @@ export function Signup({
           autoComplete="current-password"
           variant="bordered"
         />
+        <Input
+          label="Confirm Password"
+          id="confirmPassword"
+          name="confirmPassword"
+          type="password"
+          placeholder="Confirm your password"
+          variant="bordered"
+        />
         <Checkbox isRequired className="py-4" size="sm">
           I agree with the&nbsp;
           <Link href="#" size="sm">
@@ -76,6 +85,12 @@ export function Signup({
           <Icon icon="simple-icons:apple" width={24} />
         </Button>
       </div>
+      <p className="text-center text-small">
+        Already have an account?&nbsp;
+        <Link as={NextLink} href="/login?from=/signup&return=/" size="sm">
+          Log In
+        </Link>
+      </p>
     </div>
   );
 }

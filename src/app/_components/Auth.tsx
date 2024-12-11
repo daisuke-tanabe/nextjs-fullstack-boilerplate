@@ -13,13 +13,7 @@ export function Auth() {
       <Button as={NextLink} href={`/login?from=${pathname}`} className="text-default-500" radius="full" variant="light">
         Log&nbsp;In
       </Button>
-      <Button
-        as={NextLink}
-        href={`/signup?from=${pathname}`}
-        className="text-default-500"
-        radius="full"
-        variant="light"
-      >
+      <Button as={NextLink} href="/signup" className="text-default-500" radius="full" variant="light">
         Sign&nbsp;Up
       </Button>
     </>
