@@ -29,21 +29,23 @@ export function Login({
     <div className="flex flex-col gap-4">
       <form className="flex flex-col gap-3" action={formAction} noValidate>
         <Input
+          autoComplete="username"
           label="Email"
           id="email"
           name="email"
           type="email"
-          autoComplete="username"
           placeholder="Enter your email"
+          radius="sm"
           variant="bordered"
         />
         <Input
+          autoComplete="current-password"
           label="Password"
           id="password"
           name="password"
           type="password"
           placeholder="Enter your password"
-          autoComplete="current-password"
+          radius="sm"
           variant="bordered"
         />
         <div className="flex justify-end px-1 py-2">
@@ -51,7 +53,7 @@ export function Login({
             Forgot password?
           </Link>
         </div>
-        <Button color="primary" type="submit" isLoading={isFormLoading}>
+        <Button color="primary" type="submit" radius="sm" isLoading={isFormLoading}>
           {!isFormLoading && 'Log In'}
         </Button>
       </form>
@@ -62,13 +64,13 @@ export function Login({
         <Divider className="flex-1" />
       </div>
       <div className="flex flex-row gap-4 justify-center">
-        <Button isIconOnly aria-label="Google" variant="bordered" size="lg">
+        <Button isIconOnly aria-label="Google" variant="bordered" radius="sm" size="lg">
           <Icon icon="devicon:google" width={24} />
         </Button>
-        <Button isIconOnly aria-label="Facebook" variant="bordered" size="lg">
+        <Button isIconOnly aria-label="Facebook" variant="bordered" radius="sm" size="lg">
           <Icon icon="logos:facebook" width={24} />
         </Button>
-        <Button isIconOnly aria-label="Apple" variant="bordered" size="lg">
+        <Button isIconOnly aria-label="Apple" variant="bordered" radius="sm" size="lg">
           <Icon icon="simple-icons:apple" width={24} />
         </Button>
       </div>

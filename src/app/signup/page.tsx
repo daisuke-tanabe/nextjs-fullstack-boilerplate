@@ -27,7 +27,7 @@ export default function Page() {
               </Link>
             </div>
           </div>
-          <div className="flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-6 pb-6 pt-12 shadow-small">
+          <div className="absolute top-0 bottom-0 right-0 flex flex-col justify-center w-full max-w-lg gap-4 bg-content1 px-20">
             <div className="flex flex-col items-center gap-2 mb-6">
               <p className="text-2xl font-semibold">Create Account</p>
               <p className="text-sm">Sign up for a new account to get started</p>

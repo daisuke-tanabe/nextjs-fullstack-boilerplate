@@ -39,12 +39,12 @@ function LoginModal({
   };
 
   return (
-    <Modal size="sm" placement="top" defaultOpen onClose={handleClose}>
+    <Modal radius="md" size="sm" placement="top" defaultOpen onClose={handleClose}>
       <ModalContent>
         <ModalBody>
           <div className="py-12 pb-4">
             {formState && 'id' in formState && 'email' in formState ? (
-              <>
+              <div className="flex flex-col items-center">
                 <div className="flex flex-col items-center gap-4 mb-6">
                   <Icon icon="qlementine-icons:success-16" className="text-green-500" width={36} />
                   <div className="flex flex-col items-center gap-2">
@@ -52,10 +52,10 @@ function LoginModal({
                     <p className="text-sm">You have successfully signed into your account</p>
                   </div>
                 </div>
-                <Button className="block mx-auto" variant="bordered" size="lg" onClick={handleClose}>
-                  Done
+                <Button color="primary" variant="solid" radius="sm" onPress={handleClose}>
+                  Continue
                 </Button>
-              </>
+              </div>
             ) : (
               <>
                 <div className="flex justify-center mb-4">

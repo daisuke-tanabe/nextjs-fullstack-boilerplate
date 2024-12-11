@@ -14,14 +14,24 @@ export function Auth() {
       <Button
         as={NextLink}
         href={`/login?from=${pathname}`}
-        className="text-default-500"
-        radius="full"
-        variant="light"
+        className="text-sm border	rounded px-4"
+        color="primary"
+        radius="sm"
+        size="sm"
+        variant="bordered"
         isDisabled={isLoginPath}
       >
         Log&nbsp;In
       </Button>
-      <Button as="a" href="/signup" className="text-default-500" radius="full" variant="light">
+      <Button
+        as="a"
+        href="/signup"
+        className="text-sm rounded px-4"
+        color="primary"
+        radius="sm"
+        size="sm"
+        variant="solid"
+      >
         Sign&nbsp;Up
       </Button>
     </>
