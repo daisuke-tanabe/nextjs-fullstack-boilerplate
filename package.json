@@ -48,7 +48,7 @@
     "globals": "15.13.0",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
-    "lefthook": "1.9.0",
+    "lefthook": "1.9.2",
     "npm-run-all2": "7.0.1",
     "postcss": "8.4.49",
     "prettier": "3.4.2",
