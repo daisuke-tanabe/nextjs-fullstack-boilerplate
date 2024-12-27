@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { NextUIProvider } from '@nextui-org/react';
 import './globals.css';
 import { NavigationHeader } from '@/app/_components/NavigationHeader';
 import { NavigationHeaderMenu } from '@/app/_components/NavigationHeaderMenu';
+import { UIProvider } from '@/app/_providers/UIProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,13 +22,13 @@ export default function Layout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextUIProvider>
+        <UIProvider>
           <NavigationHeader>
             <NavigationHeaderMenu />
           </NavigationHeader>
           {children}
           {auth}
-        </NextUIProvider>
+        </UIProvider>
       </body>
     </html>
   );
