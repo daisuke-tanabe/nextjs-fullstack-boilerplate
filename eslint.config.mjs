@@ -37,7 +37,7 @@ export default tseslint.config(
           'ts-ignore': false,
           'ts-nocheck': false,
           'ts-check': false,
-        }
+        },
       ],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     },

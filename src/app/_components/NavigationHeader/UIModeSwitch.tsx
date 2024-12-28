@@ -1,7 +1,7 @@
 'use client';
 
-import {ChangeEvent, useEffect} from 'react';
-import {styled, useColorScheme} from '@mui/material/styles';
+import { ChangeEvent, useEffect } from 'react';
+import { styled, useColorScheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Switch from '@mui/material/Switch';
 
@@ -74,5 +74,5 @@ export function UIModeSwitch() {
     setMode(prefersDarkMode ? 'dark' : 'light');
   }, [prefersDarkMode]);
 
-  return <ThemeSwitch checked={isDarkMode} onChange={handleChange}/>;
+  return <ThemeSwitch checked={isDarkMode} onChange={handleChange} />;
 }
