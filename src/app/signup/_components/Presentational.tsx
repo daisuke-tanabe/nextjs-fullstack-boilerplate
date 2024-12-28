@@ -49,12 +49,12 @@ export function Presentational() {
             sx={{
               bgcolor: 'background.paper',
               justifyContent: 'center',
-              px: 10,
+              px: 15,
               position: 'absolute',
               top: 0,
               bottom: 0,
               right: 0,
-              maxWidth: 512,
+              maxWidth: 567,
               width: '100%',
             }}
           >

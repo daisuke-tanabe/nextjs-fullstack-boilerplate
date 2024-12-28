@@ -5,7 +5,6 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
@@ -13,7 +12,6 @@ import { useTheme } from '@mui/material/styles';
 import { login } from '@/app/_actions/login';
 import { Login } from '@/app/_components/Login/Login';
 import { Suspense, useActionState } from 'react';
-import { Icon } from '@iconify/react';
 import Stack from '@mui/material/Stack';
 
 type User = {
@@ -49,30 +47,46 @@ function LoginModal({
   };
 
   return (
-    <Dialog open fullWidth onClose={handleClose} maxWidth="sm" fullScreen={isFullScreen}>
-      <DialogContent sx={{ px: 4, pt: 6, pb: 4 }}>
-        {formState && 'id' in formState && 'email' in formState ? (
-          <Box>
-            <Box>
-              <Icon icon="qlementine-icons:success-16" className="text-green-500" width={36} />
-              <Box>
-                <Typography>Log&nbsp;In&nbsp;Successful</Typography>
-                <Typography>You have successfully signed into your account</Typography>
-              </Box>
-            </Box>
-            <Button onClick={handleClose}>Continue</Button>
-          </Box>
-        ) : (
-          <Stack spacing={3}>
-            <Stack spacing={0.5}>
-              <Typography sx={{ fontSize: 'h5.fontSize', fontWeight: 'bold', textAlign: 'center' }}>
-                Welcome Back
-              </Typography>
-              <Typography sx={{ textAlign: 'center' }}>Log in to your account to continue</Typography>
-            </Stack>
-            <Login formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
-          </Stack>
-        )}
+    <Dialog
+      open
+      fullWidth
+      onClose={handleClose}
+      fullScreen={isFullScreen}
+      PaperProps={{
+        sx: {
+          maxWidth: {
+            xs: '100%',
+            sm: 375,
+          },
+        },
+      }}
+    >
+      <DialogContent sx={{ px: 3, pt: 6, pb: 3 }}>
+        <Stack spacing={3}>
+          {formState && 'id' in formState && 'email' in formState ? (
+            <>
+              <Stack spacing={0.5}>
+                <Typography sx={{ fontSize: 'h5.fontSize', fontWeight: 'bold', textAlign: 'center' }}>
+                  Log&nbsp;In&nbsp;Successful
+                </Typography>
+                <Typography sx={{ textAlign: 'center' }}>You have successfully signed into your account</Typography>
+              </Stack>
+              <Button variant="outlined" onClick={handleClose} sx={{ alignSelf: 'center' }}>
+                Continue
+              </Button>
+            </>
+          ) : (
+            <>
+              <Stack spacing={0.5}>
+                <Typography sx={{ fontSize: 'h5.fontSize', fontWeight: 'bold', textAlign: 'center' }}>
+                  Welcome Back
+                </Typography>
+                <Typography sx={{ textAlign: 'center' }}>Log in to your account to continue</Typography>
+              </Stack>
+              <Login formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
+            </>
+          )}
+        </Stack>
       </DialogContent>
     </Dialog>
   );

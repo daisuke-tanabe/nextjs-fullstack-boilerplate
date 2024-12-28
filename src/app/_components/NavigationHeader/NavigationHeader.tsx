@@ -4,6 +4,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
 
 import NextLink from 'next/link';
@@ -18,34 +19,43 @@ type NavigationHeaderProps = {
 
 export function NavigationHeader({ user }: NavigationHeaderProps) {
   const pathname = usePathname();
-  const isLoginPath = pathname === '/login';
 
   if (pathname === '/signup') return null;
 
   return (
     <>
-      <AppBar>
+      <AppBar elevation={0} sx={{ bgcolor: 'background.default' }}>
         <Toolbar>
-          <Typography variant="h6" component="h1" sx={{ flexGrow: 1 }}>
-            <Link component={NextLink} href="/" color="inherit" underline="none">
+          <Typography
+            component="h1"
+            sx={{ color: 'text.primary', fontSize: 24, fontWeight: 'bold', flexGrow: 1, display: 'inline-flex' }}
+          >
+            <Link component={NextLink} href="/" underline="none" sx={{ color: 'inherit', fontSize: 20 }}>
               Lorem ipsum
             </Link>
           </Typography>
-          <UIModeSwitch />
-          {user ? (
-            <Button color="inherit" onClick={() => void signout()}>
-              Signout
-            </Button>
-          ) : (
-            <>
-              <Button component={NextLink} href={`/login?from=${pathname}`} color="inherit" disabled={isLoginPath}>
-                Log&nbsp;In
-              </Button>
-              <Button component="a" href="/signup" color="inherit">
-                Sign&nbsp;Up
-              </Button>
-            </>
-          )}
+
+          <Stack direction="row" spacing={2}>
+            <UIModeSwitch />
+            {user ? (
+              <Button onClick={() => void signout()}>Signout</Button>
+            ) : (
+              <>
+                <Button
+                  component={NextLink}
+                  href={`/login?from=${pathname}`}
+                  variant="outlined"
+                  size="small"
+                  disabled={pathname === '/login'}
+                >
+                  Log&nbsp;In
+                </Button>
+                <Button component="a" href="/signup" variant="contained" size="small" disableElevation>
+                  Sign&nbsp;Up
+                </Button>
+              </>
+            )}
+          </Stack>
         </Toolbar>
       </AppBar>
       <Toolbar />

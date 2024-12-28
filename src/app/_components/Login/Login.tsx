@@ -1,8 +1,8 @@
 'use client';
 
+import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
@@ -12,6 +12,8 @@ import IconButton from '@mui/material/IconButton';
 import { Icon } from '@iconify/react';
 import NextForm from 'next/form';
 import NextLink from 'next/link';
+
+import { CustomTextField } from '@/ui/CustomTextField';
 
 type User = {
   id: string;
@@ -40,36 +42,34 @@ export function Login({
     <Stack spacing={2}>
       <NextForm action={formAction} noValidate>
         <Stack spacing={2}>
-          <TextField
+          <CustomTextField
             autoComplete="username"
             label="Email"
             id="email"
             name="email"
             type="email"
             placeholder="Enter your email"
-            variant="filled"
           />
-          <TextField
+          <CustomTextField
             autoComplete="current-password"
             label="Password"
             id="password"
             name="password"
             type="password"
             placeholder="Enter your password"
-            variant="filled"
           />
           <Box sx={{ textAlign: 'right' }}>
             <Link component={NextLink} href="#dummyURL" underline="none">
               Forgot password?
             </Link>
           </Box>
-          <Button type="submit" variant="contained" size="large">
-            {!isFormLoading && 'Log In'}
+          <Button type="submit" variant="contained" size="large" disableElevation disabled={isFormLoading}>
+            {isFormLoading ? 'Loading' : 'Log In'}
           </Button>
         </Stack>
       </NextForm>
 
-      {formState && 'error' in formState && <Box>{formState.error.message}</Box>}
+      {formState && 'error' in formState && <Alert severity="error">{formState.error.message}</Alert>}
 
       <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'center' }}>
         <Divider sx={{ flex: 1, borderColor: 'grey.400' }} />

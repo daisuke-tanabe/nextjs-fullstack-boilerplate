@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -13,6 +12,8 @@ import Stack from '@mui/material/Stack';
 
 import NextForm from 'next/form';
 import IconButton from '@mui/material/IconButton';
+
+import { CustomTextField } from '@/ui/CustomTextField';
 
 type User = {
   id: string | undefined;
@@ -41,7 +42,7 @@ export function Signup({
     <Stack spacing={2}>
       <NextForm action={formAction} noValidate>
         <Stack spacing={2}>
-          <TextField
+          <CustomTextField
             autoComplete="username"
             label="Email"
             id="email"
@@ -49,7 +50,7 @@ export function Signup({
             type="email"
             placeholder="Enter your email"
           />
-          <TextField
+          <CustomTextField
             autoComplete="current-password"
             label="Password"
             id="password"
@@ -57,7 +58,7 @@ export function Signup({
             type="password"
             placeholder="Enter your password"
           />
-          <TextField
+          <CustomTextField
             label="Confirm Password"
             id="confirmPassword"
             name="confirmPassword"
@@ -75,8 +76,8 @@ export function Signup({
             }
             control={<Checkbox name="approval" />}
           />
-          <Button type="submit" variant="contained" size="large">
-            {!isFormLoading && 'Sign Up'}
+          <Button type="submit" variant="contained" size="large" disableElevation disabled={isFormLoading}>
+            {isFormLoading ? 'Loading' : 'Sign Up'}
           </Button>
         </Stack>
       </NextForm>
