@@ -10,7 +10,19 @@ type PageHomeProps = {
 
 export function PageHome({ email }: PageHomeProps) {
   return (
-    <Box>
+    <Box
+      sx={{
+        display: 'flex',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        bgcolor: 'background.default',
+        color: 'text.primary',
+        borderRadius: 1,
+        p: 3,
+        minHeight: '56px',
+      }}
+    >
       {email ? <Box>Your email: {email}</Box> : <Box>Not logged in</Box>}
       <Box>
         <Link component={NextLink} href="/posts/1">

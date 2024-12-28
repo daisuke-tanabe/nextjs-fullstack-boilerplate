@@ -10,6 +10,7 @@ import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { User } from '@supabase/supabase-js';
 import { signout } from '@/app/_actions/signout';
+import { UIModeSwitch } from './UIModeSwitch';
 
 type NavigationHeaderProps = {
   user: User | null;
@@ -29,6 +30,7 @@ export function NavigationHeader({ user }: NavigationHeaderProps) {
             Lorem ipsum
           </Link>
         </Typography>
+        <UIModeSwitch />
         {user ? (
           <Button color="inherit" onClick={() => void signout()}>
             Signout
