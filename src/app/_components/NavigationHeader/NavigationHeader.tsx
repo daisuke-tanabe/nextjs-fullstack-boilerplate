@@ -23,29 +23,32 @@ export function NavigationHeader({ user }: NavigationHeaderProps) {
   if (pathname === '/signup') return null;
 
   return (
-    <AppBar>
-      <Toolbar>
-        <Typography variant="h6" component="h1" sx={{ flexGrow: 1 }}>
-          <Link component={NextLink} href="/" color="inherit" underline="none">
-            Lorem ipsum
-          </Link>
-        </Typography>
-        <UIModeSwitch />
-        {user ? (
-          <Button color="inherit" onClick={() => void signout()}>
-            Signout
-          </Button>
-        ) : (
-          <>
-            <Button component={NextLink} href={`/login?from=${pathname}`} color="inherit" disabled={isLoginPath}>
-              Log&nbsp;In
+    <>
+      <AppBar>
+        <Toolbar>
+          <Typography variant="h6" component="h1" sx={{ flexGrow: 1 }}>
+            <Link component={NextLink} href="/" color="inherit" underline="none">
+              Lorem ipsum
+            </Link>
+          </Typography>
+          <UIModeSwitch />
+          {user ? (
+            <Button color="inherit" onClick={() => void signout()}>
+              Signout
             </Button>
-            <Button component="a" href="/signup" color="inherit">
-              Sign&nbsp;Up
-            </Button>
-          </>
-        )}
-      </Toolbar>
-    </AppBar>
+          ) : (
+            <>
+              <Button component={NextLink} href={`/login?from=${pathname}`} color="inherit" disabled={isLoginPath}>
+                Log&nbsp;In
+              </Button>
+              <Button component="a" href="/signup" color="inherit">
+                Sign&nbsp;Up
+              </Button>
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
+      <Toolbar />
+    </>
   );
 }

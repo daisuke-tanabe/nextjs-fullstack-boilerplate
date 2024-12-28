@@ -2,7 +2,7 @@
 
 import { login } from '@/app/_actions/login';
 
-import { Login } from '@/app/_components/Login';
+import { Login } from '@/app/_components/Login/Login';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -10,12 +10,13 @@ import Typography from '@mui/material/Typography';
 
 import { useActionState } from 'react';
 import { Icon } from '@iconify/react';
+import Stack from '@mui/material/Stack';
 
 export default function Page() {
   const [formState, formAction, isFormLoading] = useActionState(login, null);
 
   return (
-    <Container>
+    <Container maxWidth="sm" sx={{ pt: 6, pb: 4 }}>
       <Box>
         {formState && 'id' in formState && 'email' in formState ? (
           <>
@@ -28,13 +29,15 @@ export default function Page() {
             </Box>
           </>
         ) : (
-          <>
-            <Box>
-              <Typography>Welcome Back</Typography>
-              <Typography>Log in to your account to continue</Typography>
-            </Box>
+          <Stack spacing={3}>
+            <Stack spacing={0.5}>
+              <Typography sx={{ fontSize: 'h5.fontSize', fontWeight: 'bold', textAlign: 'center' }}>
+                Welcome Back
+              </Typography>
+              <Typography sx={{ textAlign: 'center' }}>Log in to your account to continue</Typography>
+            </Stack>
             <Login formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
-          </>
+          </Stack>
         )}
       </Box>
     </Container>

@@ -7,11 +7,14 @@ import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 import { login } from '@/app/_actions/login';
-import { Login } from '@/app/_components/Login';
+import { Login } from '@/app/_components/Login/Login';
 import { Suspense, useActionState } from 'react';
 import { Icon } from '@iconify/react';
+import Stack from '@mui/material/Stack';
 
 type User = {
   id: string;
@@ -35,7 +38,10 @@ function LoginModal({
   isFormLoading: boolean;
 }) {
   const router = useRouter();
+  const theme = useTheme();
   const searchParams = useSearchParams();
+  const isFullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   const fromParam = searchParams.get('from');
 
   const handleClose = () => {
@@ -43,8 +49,8 @@ function LoginModal({
   };
 
   return (
-    <Dialog open={true} onClose={handleClose}>
-      <DialogContent>
+    <Dialog open fullWidth onClose={handleClose} maxWidth="sm" fullScreen={isFullScreen}>
+      <DialogContent sx={{ px: 4, pt: 6, pb: 4 }}>
         {formState && 'id' in formState && 'email' in formState ? (
           <Box>
             <Box>
@@ -57,16 +63,15 @@ function LoginModal({
             <Button onClick={handleClose}>Continue</Button>
           </Box>
         ) : (
-          <>
-            <Box>
-              <img src="https://placehold.jp/aaaaaa/ffffff/64x64.png?text=DEMO" alt="demo" width="80" height="80" />
-            </Box>
-            <Box>
-              <Typography>Welcome Back</Typography>
-              <Typography>Log in to your account to continue</Typography>
-            </Box>
+          <Stack spacing={3}>
+            <Stack spacing={0.5}>
+              <Typography sx={{ fontSize: 'h5.fontSize', fontWeight: 'bold', textAlign: 'center' }}>
+                Welcome Back
+              </Typography>
+              <Typography sx={{ textAlign: 'center' }}>Log in to your account to continue</Typography>
+            </Stack>
             <Login formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
-          </>
+          </Stack>
         )}
       </DialogContent>
     </Dialog>
