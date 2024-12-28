@@ -5,7 +5,9 @@ import tseslint from 'typescript-eslint';
 
 import globals from 'globals';
 
-const compat = new FlatCompat();
+const compat = new FlatCompat({
+  baseDirectory: import.meta.dirname,
+});
 
 export default tseslint.config(
   {
@@ -28,6 +30,15 @@ export default tseslint.config(
       ...compat.extends('next/core-web-vitals'),
     ],
     rules: {
+      '@typescript-eslint/ban-ts-comment': [
+        'error',
+        {
+          'ts-expect-error': 'allow-with-description',
+          'ts-ignore': false,
+          'ts-nocheck': false,
+          'ts-check': false,
+        }
+      ],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     },
   },
