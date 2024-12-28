@@ -25,6 +25,7 @@
     "@fontsource/roboto": "5.1.0",
     "@mui/material": "6.3.0",
     "@mui/material-nextjs": "6.3.0",
+    "@mui/system": "6.3.0",
     "@prisma/client": "6.1.0",
     "@supabase/ssr": "0.5.2",
     "@supabase/supabase-js": "2.47.10",
