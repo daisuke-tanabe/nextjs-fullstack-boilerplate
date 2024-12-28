@@ -1,7 +1,8 @@
 'use client';
 
 import NextLink from 'next/link';
-import { Link } from '@nextui-org/react';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
 
 type PageHomeProps = {
   email?: string;
@@ -9,18 +10,18 @@ type PageHomeProps = {
 
 export function PageHome({ email }: PageHomeProps) {
   return (
-    <div>
-      {email ? <div>Your email: {email}</div> : <div>Not logged in</div>}
-      <div>
-        <Link as={NextLink} href="/posts/1" size="sm">
+    <Box>
+      {email ? <Box>Your email: {email}</Box> : <Box>Not logged in</Box>}
+      <Box>
+        <Link component={NextLink} href="/posts/1">
           /posts/1
         </Link>
-      </div>
-      <div>
-        <Link as={NextLink} href="/posts/2" size="sm">
+      </Box>
+      <Box>
+        <Link component={NextLink} href="/posts/2">
           /posts/2
         </Link>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

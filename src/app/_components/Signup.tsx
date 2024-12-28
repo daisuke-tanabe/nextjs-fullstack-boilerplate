@@ -1,7 +1,14 @@
 'use client';
 
-import { Button, Checkbox, Divider, Input, Link } from '@nextui-org/react';
 import { Icon } from '@iconify/react';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import Link from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 type User = {
   id: string | undefined;
@@ -25,74 +32,65 @@ export function Signup({
   isFormLoading: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-4">
+    <Box>
       <form className="flex flex-col gap-3" action={formAction} noValidate>
-        <Input
+        <TextField
           autoComplete="username"
           label="Email"
           id="email"
           name="email"
           type="email"
           placeholder="Enter your email"
-          radius="sm"
-          variant="bordered"
         />
-        <Input
+        <TextField
           autoComplete="current-password"
           label="Password"
           id="password"
           name="password"
           type="password"
           placeholder="Enter your password"
-          radius="sm"
-          variant="bordered"
         />
-        <Input
+        <TextField
           label="Confirm Password"
           id="confirmPassword"
           name="confirmPassword"
           type="password"
           placeholder="Confirm your password"
-          radius="sm"
-          variant="bordered"
         />
-        <Checkbox isRequired className="py-4" size="sm">
-          I agree with the&nbsp;
-          <Link href="#" size="sm">
-            Terms
-          </Link>
-          &nbsp; and&nbsp;
-          <Link href="#" size="sm">
-            Privacy Policy
-          </Link>
-        </Checkbox>
-        <Button color="primary" type="submit" radius="sm" isLoading={isFormLoading}>
-          {!isFormLoading && 'Sign Up'}
-        </Button>
+        <FormControlLabel
+          label={
+            <Typography>
+              I agree with the&nbsp;
+              <Link href="#">Terms</Link>
+              &nbsp; and&nbsp;
+              <Link href="#">Privacy Policy</Link>
+            </Typography>
+          }
+          control={<Checkbox name="approval" />}
+        />
+        <Button>{!isFormLoading && 'Sign Up'}</Button>
       </form>
-      {formState && 'error' in formState && <div className="text-danger-500 text-sm">{formState.error.message}</div>}
-      <div className="flex items-center gap-4 py-2">
-        <Divider className="flex-1" />
-        <p className="shrink-0 text-tiny text-default-500">OR</p>
-        <Divider className="flex-1" />
-      </div>
-      <div className="flex flex-row gap-4 justify-center">
-        <Button isIconOnly aria-label="Google" variant="bordered" radius="sm" size="lg">
+      {formState && 'error' in formState && <Box>{formState.error.message}</Box>}
+      <Box>
+        <Divider />
+        <Typography>OR</Typography>
+        <Divider />
+      </Box>
+      <Box>
+        <Button>
           <Icon icon="devicon:google" width={24} />
         </Button>
-        <Button isIconOnly aria-label="Facebook" variant="bordered" radius="sm" size="lg">
+        <Button>
           <Icon icon="logos:facebook" width={24} />
         </Button>
-        <Button isIconOnly aria-label="Apple" variant="bordered" radius="sm" size="lg">
+        <Button>
           <Icon icon="simple-icons:apple" width={24} />
         </Button>
-      </div>
-      <p className="text-center text-small">
+      </Box>
+      <Typography>
         Already have an account?&nbsp;
-        <Link as="a" href="/login" size="sm">
-          Log In
-        </Link>
-      </p>
-    </div>
+        <Link href="/login">Log In</Link>
+      </Typography>
+    </Box>
   );
 }

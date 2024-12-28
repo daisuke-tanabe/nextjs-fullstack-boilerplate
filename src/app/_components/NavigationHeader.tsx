@@ -1,23 +1,49 @@
 'use client';
 
-import { Navbar, NavbarBrand, NavbarContent } from '@nextui-org/react';
-import NextLink from 'next/link';
-import { PropsWithChildren } from 'react';
-import { usePathname } from 'next/navigation';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 
-export function NavigationHeader({ children }: PropsWithChildren) {
+import NextLink from 'next/link';
+import { usePathname } from 'next/navigation';
+import { User } from '@supabase/supabase-js';
+import { signout } from '@/app/_actions/signout';
+
+type NavigationHeaderProps = {
+  user: User | null;
+};
+
+export function NavigationHeader({ user }: NavigationHeaderProps) {
   const pathname = usePathname();
+  const isLoginPath = pathname === '/login';
 
   if (pathname === '/signup') return null;
 
   return (
-    <Navbar maxWidth="full" isBordered>
-      <NavbarBrand>
-        <h1 className="text-2xl font-bold">
-          <NextLink href="/">Lorem ipsum</NextLink>
-        </h1>
-      </NavbarBrand>
-      <NavbarContent justify="end">{children}</NavbarContent>
-    </Navbar>
+    <AppBar>
+      <Toolbar>
+        <Typography variant="h6" component="h1" sx={{ flexGrow: 1 }}>
+          <Link component={NextLink} href="/" color="inherit" underline="none">
+            Lorem ipsum
+          </Link>
+        </Typography>
+        {user ? (
+          <Button color="inherit" onClick={() => void signout()}>
+            Signout
+          </Button>
+        ) : (
+          <>
+            <Button component={NextLink} href={`/login?from=${pathname}`} color="inherit" disabled={isLoginPath}>
+              Log&nbsp;In
+            </Button>
+            <Button component="a" href="/signup" color="inherit">
+              Sign&nbsp;Up
+            </Button>
+          </>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }

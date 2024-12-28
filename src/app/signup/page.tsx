@@ -4,7 +4,7 @@ import { signup } from '@/app/_actions/signup';
 import { Signup } from '@/app/_components/Signup';
 import { useActionState } from 'react';
 import NextLink from 'next/link';
-import { Link } from '@nextui-org/react';
+import Link from '@mui/material/Link';
 
 export default function Page() {
   const [formState, formAction, isFormLoading] = useActionState(signup, null);
@@ -22,7 +22,7 @@ export default function Page() {
         >
           <div className="absolute left-10 top-10">
             <div className="flex items-center">
-              <Link as={NextLink} href="/" className="text-xl text-white">
+              <Link component={NextLink} href="/">
                 Lorem ipsum
               </Link>
             </div>

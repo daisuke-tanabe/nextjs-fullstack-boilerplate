@@ -2,7 +2,11 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 
-import { Button, Modal, ModalBody, ModalContent } from '@nextui-org/react';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 import { login } from '@/app/_actions/login';
 import { Login } from '@/app/_components/Login';
@@ -39,39 +43,33 @@ function LoginModal({
   };
 
   return (
-    <Modal radius="md" size="sm" placement="top" defaultOpen onClose={handleClose}>
-      <ModalContent>
-        <ModalBody>
-          <div className="py-12 pb-4">
-            {formState && 'id' in formState && 'email' in formState ? (
-              <div className="flex flex-col items-center">
-                <div className="flex flex-col items-center gap-4 mb-6">
-                  <Icon icon="qlementine-icons:success-16" className="text-green-500" width={36} />
-                  <div className="flex flex-col items-center gap-2">
-                    <p className="text-2xl font-semibold">Log&nbsp;In&nbsp;Successful</p>
-                    <p className="text-sm">You have successfully signed into your account</p>
-                  </div>
-                </div>
-                <Button color="primary" variant="solid" radius="sm" onPress={handleClose}>
-                  Continue
-                </Button>
-              </div>
-            ) : (
-              <>
-                <div className="flex justify-center mb-4">
-                  <img src="https://placehold.jp/aaaaaa/ffffff/64x64.png?text=DEMO" alt="demo" width="80" height="80" />
-                </div>
-                <div className="flex flex-col items-center gap-2 mb-6">
-                  <p className="text-2xl font-semibold">Welcome Back</p>
-                  <p className="text-sm">Log in to your account to continue</p>
-                </div>
-                <Login formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
-              </>
-            )}
-          </div>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+    <Dialog open={true} onClose={handleClose}>
+      <DialogContent>
+        {formState && 'id' in formState && 'email' in formState ? (
+          <Box>
+            <Box>
+              <Icon icon="qlementine-icons:success-16" className="text-green-500" width={36} />
+              <Box>
+                <Typography>Log&nbsp;In&nbsp;Successful</Typography>
+                <Typography>You have successfully signed into your account</Typography>
+              </Box>
+            </Box>
+            <Button onClick={handleClose}>Continue</Button>
+          </Box>
+        ) : (
+          <>
+            <Box>
+              <img src="https://placehold.jp/aaaaaa/ffffff/64x64.png?text=DEMO" alt="demo" width="80" height="80" />
+            </Box>
+            <Box>
+              <Typography>Welcome Back</Typography>
+              <Typography>Log in to your account to continue</Typography>
+            </Box>
+            <Login formState={formState} formAction={formAction} isFormLoading={isFormLoading} />
+          </>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 }
 

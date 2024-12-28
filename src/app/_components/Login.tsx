@@ -1,6 +1,12 @@
 'use client';
 
-import { Button, Divider, Input, Link } from '@nextui-org/react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
+
 import { Icon } from '@iconify/react';
 import NextLink from 'next/link';
 
@@ -26,60 +32,52 @@ export function Login({
   isFormLoading: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-4">
-      <form className="flex flex-col gap-3" action={formAction} noValidate>
-        <Input
+    <Box>
+      <form action={formAction} noValidate>
+        <TextField
           autoComplete="username"
           label="Email"
           id="email"
           name="email"
           type="email"
           placeholder="Enter your email"
-          radius="sm"
-          variant="bordered"
         />
-        <Input
+        <TextField
           autoComplete="current-password"
           label="Password"
           id="password"
           name="password"
           type="password"
           placeholder="Enter your password"
-          radius="sm"
-          variant="bordered"
         />
-        <div className="flex justify-end px-1 py-2">
-          <Link as={NextLink} className="text-default-500" href="#dummyURL" size="sm">
+        <Box>
+          <Link component={NextLink} href="#dummyURL">
             Forgot password?
           </Link>
-        </div>
-        <Button color="primary" type="submit" radius="sm" isLoading={isFormLoading}>
-          {!isFormLoading && 'Log In'}
-        </Button>
+        </Box>
+        <Button type="submit">{!isFormLoading && 'Log In'}</Button>
       </form>
-      {formState && 'error' in formState && <div className="text-danger-500 text-sm">{formState.error.message}</div>}
-      <div className="flex items-center gap-4 py-2">
-        <Divider className="flex-1" />
-        <p className="shrink-0 text-tiny text-default-500">OR</p>
-        <Divider className="flex-1" />
-      </div>
-      <div className="flex flex-row gap-4 justify-center">
-        <Button isIconOnly aria-label="Google" variant="bordered" radius="sm" size="lg">
+      {formState && 'error' in formState && <Box>{formState.error.message}</Box>}
+      <Box>
+        <Divider />
+        <Typography>OR</Typography>
+        <Divider />
+      </Box>
+      <Box>
+        <Button>
           <Icon icon="devicon:google" width={24} />
         </Button>
-        <Button isIconOnly aria-label="Facebook" variant="bordered" radius="sm" size="lg">
+        <Button>
           <Icon icon="logos:facebook" width={24} />
         </Button>
-        <Button isIconOnly aria-label="Apple" variant="bordered" radius="sm" size="lg">
+        <Button>
           <Icon icon="simple-icons:apple" width={24} />
         </Button>
-      </div>
-      <p className="text-center text-small">
+      </Box>
+      <Typography>
         Need to create an account?&nbsp;
-        <Link as="a" href="/signup" size="sm">
-          Sign Up
-        </Link>
-      </p>
-    </div>
+        <Link href="/signup">Sign Up</Link>
+      </Typography>
+    </Box>
   );
 }
