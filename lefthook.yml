@@ -4,9 +4,11 @@ pre-commit:
     eslint:
       glob: "*.{js,ts,jsx,tsx,cjs,mjs,cts,mts}"
       run: eslint --fix {staged_files}
+      stage_fixed: true
     prettier:
       glob: "*.{js,ts,jsx,tsx,cjs,mjs,cts,mts,json}"
       run: prettier --write {staged_files}
+      stage_fixed: true
 
 pre-push:
   commands:
