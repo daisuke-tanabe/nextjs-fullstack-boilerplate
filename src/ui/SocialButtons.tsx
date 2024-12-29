@@ -1,35 +1,26 @@
 import { Icon } from '@iconify/react';
 import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
 
-const socialIcons = [
-  {
-    iconAttribute: 'devicon:google',
-    enabled: true,
-  },
-  {
-    iconAttribute: 'logos:facebook',
-    enabled: false,
-  },
-  {
-    iconAttribute: 'simple-icons:apple',
-    enabled: false,
-  },
-];
+import { createClient } from '@/utils/supabase/client';
 
 export function SocialButtons() {
+  const supabase = createClient();
+
+  const handleClick = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: 'http://localhost:3000/api/auth/callback',
+      },
+    });
+  };
+
   return (
-    <Stack direction="row" spacing={2} sx={{ justifyContent: 'center' }}>
-      {socialIcons.map(({ iconAttribute, enabled }) =>
-        !enabled ? null : (
-          <IconButton
-            key={iconAttribute}
-            sx={{ borderStyle: 'solid', borderRadius: 2, borderWidth: 2, borderColor: 'grey.400' }}
-          >
-            <Icon icon={iconAttribute} width={24} />
-          </IconButton>
-        ),
-      )}
-    </Stack>
+    <IconButton
+      sx={{ alignSelf: 'center', borderStyle: 'solid', borderRadius: 2, borderWidth: 2, borderColor: 'grey.400' }}
+      onClick={() => void handleClick()}
+    >
+      <Icon icon="devicon:google" width={24} />
+    </IconButton>
   );
 }
