@@ -1,6 +1,11 @@
 import TextField, { type TextFieldProps } from '@mui/material/TextField';
 
-export function CustomTextField(props: Omit<TextFieldProps, 'variant' | 'slotProps'>) {
+export function CustomTextField({
+  readOnly = false,
+  ...props
+}: Omit<TextFieldProps, 'variant' | 'slotProps'> & {
+  readOnly?: boolean;
+}) {
   return (
     <TextField
       variant="filled"
@@ -11,6 +16,7 @@ export function CustomTextField(props: Omit<TextFieldProps, 'variant' | 'slotPro
       slotProps={{
         input: {
           disableUnderline: true,
+          readOnly,
           sx: {
             borderColor: 'grey.300',
             borderStyle: 'solid',

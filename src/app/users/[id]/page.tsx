@@ -1,10 +1,11 @@
+import Alert from '@mui/material/Alert';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import NextForm from 'next/form';
 
-import { CustomTextField } from '@/ui/CustomTextField';
 import { serverClient } from '@/utils/supabase/serverClient';
+
+import { ProfileForm } from './_components/ProfileForm';
 
 export default async function Page() {
   const serverSupabase = await serverClient();
@@ -31,34 +32,12 @@ export default async function Page() {
           <Typography sx={{ fontSize: 'h5.fontSize', fontWeight: 'bold', textAlign: 'center' }}>Me</Typography>
           <Typography sx={{ textAlign: 'center' }}>Your profile information</Typography>
         </Stack>
-        <NextForm action="#dummyAction" noValidate>
-          <Stack spacing={2}>
-            <CustomTextField
-              label="User ID (Immutable)"
-              id="uid"
-              name="uid"
-              type="text"
-              defaultValue={me.id}
-              disabled
-            />
-            <CustomTextField
-              label="Email"
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Enter your email"
-              defaultValue={me.email}
-            />
-            <CustomTextField
-              label="Name"
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Enter your name"
-              defaultValue={(me.user_metadata.name as string | undefined) ?? ''}
-            />
-          </Stack>
-        </NextForm>
+        {me.new_email && (
+          <Alert severity="warning">
+            メールアドレスの変更が完了していません。変更前と変更後のメールをご確認ください。
+          </Alert>
+        )}
+        <ProfileForm me={me} />
       </Stack>
     </Container>
   );

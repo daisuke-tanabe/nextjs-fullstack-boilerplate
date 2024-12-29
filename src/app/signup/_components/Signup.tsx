@@ -1,10 +1,8 @@
 'use client';
 
-import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -54,31 +52,14 @@ export function Signup({
             type="password"
             placeholder="Enter your password"
           />
-          <CustomTextField
-            label="Confirm Password"
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirm your password"
-          />
-          <FormControlLabel
-            label={
-              <Typography>
-                I agree with the&nbsp;
-                <Link href="#">Terms</Link>
-                &nbsp; and&nbsp;
-                <Link href="#">Privacy Policy</Link>
-              </Typography>
-            }
-            control={<Checkbox name="approval" />}
-          />
           <Button type="submit" variant="contained" size="large" disableElevation disabled={isFormLoading}>
             {isFormLoading ? 'Loading' : 'Sign Up'}
           </Button>
         </Stack>
       </NextForm>
 
-      {formState && 'error' in formState && <Box>{formState.error.message}</Box>}
+      {formState && 'id' in formState && <Alert severity="success">メールアドレスに認証リンクを送信しました。</Alert>}
+      {formState && 'error' in formState && <Alert severity="error">{formState.error.message}</Alert>}
 
       <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'center' }}>
         <Divider sx={{ flex: 1, borderColor: 'grey.400' }} />

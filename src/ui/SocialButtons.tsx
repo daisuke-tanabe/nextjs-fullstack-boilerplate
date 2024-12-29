@@ -10,7 +10,7 @@ export function SocialButtons() {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: 'http://localhost:3000/api/auth/callback',
+        redirectTo: `${process.env.NEXT_PUBLIC_URL}/api/auth/callback`,
       },
     });
   };
