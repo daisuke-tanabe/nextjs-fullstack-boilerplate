@@ -25,16 +25,8 @@ export function ProfileForm({ me }: ProfileFormProps) {
   return (
     <NextForm action={formAction} noValidate>
       <Stack spacing={2}>
-        <CustomTextField label="User ID (Immutable)" id="id" name="id" type="text" defaultValue={me.id} readOnly />
-        <CustomTextField
-          label="Email"
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Enter your email"
-          defaultValue={me.email}
-          readOnly
-        />
+        <CustomTextField label="User ID - Immutable" id="id" type="text" defaultValue={me.id} disabled />
+        <CustomTextField label="Email - Immutable" id="email" type="email" defaultValue={me.email} disabled />
         <CustomTextField
           label="New email"
           id="newEmail"
@@ -43,6 +35,7 @@ export function ProfileForm({ me }: ProfileFormProps) {
           placeholder="Enter your email"
           defaultValue={me.new_email}
         />
+        <input type="hidden" name="id" defaultValue={me.id} />
         {'error' in formState && <Alert severity="error">{formState.error.message}</Alert>}
         <Button type="submit" variant="contained" size="large" disableElevation disabled={isFormLoading}>
           {isFormLoading ? 'Loading' : 'Update'}

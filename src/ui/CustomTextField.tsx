@@ -1,4 +1,5 @@
 import TextField, { type TextFieldProps } from '@mui/material/TextField';
+import { alpha } from '@mui/system';
 
 export function CustomTextField({
   readOnly = false,
@@ -9,25 +10,50 @@ export function CustomTextField({
   return (
     <TextField
       variant="filled"
-      size="small"
-      sx={{
-        color: 'red',
-      }}
+      sx={(theme) => ({
+        '& .MuiFormLabel-root': {
+          color: theme.palette.text.primary,
+          transform: 'translate(12px, 7px) scale(0.8)',
+          '&.Mui-disabled': {
+            color: theme.palette.text.secondary,
+          },
+          '&.Mui-focused': {
+            color: theme.palette.primary.main,
+          },
+        },
+
+        '& .MuiFilledInput-root': {
+          backgroundColor: theme.palette.background.paper,
+          borderColor: theme.palette.grey['400'],
+          borderStyle: 'solid',
+          borderWidth: 1,
+          borderRadius: 1,
+          '&:hover': {
+            backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+          },
+          '&.Mui-disabled': {
+            backgroundColor: theme.palette.action.hover,
+          },
+          '&.Mui-focused': {
+            backgroundColor: theme.palette.background.paper,
+            borderColor: theme.palette.primary.main,
+            boxShadow: `${alpha(theme.palette.primary.main, theme.palette.action.focusOpacity)} 0 0 0 3px`,
+          },
+        },
+
+        '& .MuiInputBase-input': {
+          borderRadius: 1,
+          paddingTop: 3.5,
+          '&.Mui-disabled': {
+            color: theme.palette.text.secondary,
+            WebkitTextFillColor: theme.palette.text.secondary,
+          },
+        },
+      })}
       slotProps={{
         input: {
           disableUnderline: true,
           readOnly,
-          sx: {
-            borderColor: 'grey.300',
-            borderStyle: 'solid',
-            borderWidth: 1,
-            borderRadius: 1,
-          },
-        },
-        htmlInput: {
-          sx: {
-            borderRadius: 1,
-          },
         },
         inputLabel: {
           shrink: true,
