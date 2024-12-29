@@ -1,9 +1,9 @@
 'use client';
 
-import { ChangeEvent, useEffect } from 'react';
 import { styled, useColorScheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import Switch from '@mui/material/Switch';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { ChangeEvent, useEffect } from 'react';
 
 const ThemeSwitch = styled(Switch)(({ theme }) => ({
   width: 62,

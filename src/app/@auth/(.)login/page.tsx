@@ -1,18 +1,17 @@
 'use client';
 
-import { useSearchParams, useRouter } from 'next/navigation';
-
+import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { Suspense, useActionState } from 'react';
 
 import { login } from '@/app/_actions/login';
 import { Login } from '@/app/_components/Login/Login';
-import { Suspense, useActionState } from 'react';
-import Stack from '@mui/material/Stack';
 
 type User = {
   id: string;

@@ -1,16 +1,17 @@
 'use client';
 
 import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Link from '@mui/material/Link';
-
+import { User } from '@supabase/supabase-js';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
-import { User } from '@supabase/supabase-js';
+
 import { signout } from '@/app/_actions/signout';
+
 import { UIModeSwitch } from './UIModeSwitch';
 
 type NavigationHeaderProps = {

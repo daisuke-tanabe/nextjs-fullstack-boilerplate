@@ -1,8 +1,7 @@
 'use server';
 
-import { createClient } from '@/utils/supabase/server';
-
 import { authErrorMessages } from '@/utils/supabase/authErrorMessages';
+import { createClient } from '@/utils/supabase/server';
 
 type Code = keyof typeof authErrorMessages;
 

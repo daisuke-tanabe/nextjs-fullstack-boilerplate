@@ -1,15 +1,17 @@
-import { ReactNode } from 'react';
-import type { Metadata } from 'next';
-import Head from 'next/head';
 import CssBaseline from '@mui/material/CssBaseline';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
+import { ThemeProvider } from '@mui/material/styles';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import { Roboto } from 'next/font/google';
+import Head from 'next/head';
+import { ReactNode } from 'react';
 
 import { NavigationHeader } from '@/app/_components/NavigationHeader/NavigationHeader';
 import { createClient } from '@/utils/supabase/server';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import { ThemeProvider } from '@mui/material/styles';
-import { Roboto } from 'next/font/google';
+
 import theme from './_lib/theme';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Create Next App',

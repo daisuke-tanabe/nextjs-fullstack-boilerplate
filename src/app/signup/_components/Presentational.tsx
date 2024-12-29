@@ -1,14 +1,14 @@
 'use client';
 
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import NextLink from 'next/link';
+import { useActionState } from 'react';
 
 import { signup } from '@/app/_actions/signup';
 import { Signup } from '@/app/signup/_components/Signup';
-import { useActionState } from 'react';
-import NextLink from 'next/link';
-import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 export function Presentational() {
   const [formState, formAction, isFormLoading] = useActionState(signup, null);

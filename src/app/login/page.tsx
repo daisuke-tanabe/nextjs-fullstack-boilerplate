@@ -1,14 +1,12 @@
 'use client';
 
-import { login } from '@/app/_actions/login';
-
-import { Login } from '@/app/_components/Login/Login';
-
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-
-import { useActionState } from 'react';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { useActionState } from 'react';
+
+import { login } from '@/app/_actions/login';
+import { Login } from '@/app/_components/Login/Login';
 
 export default function Page() {
   const [formState, formAction, isFormLoading] = useActionState(login, null);

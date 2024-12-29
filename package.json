@@ -13,6 +13,8 @@
     "lint": "run-p lint:*",
     "lint:eslint": "eslint .",
     "lint:secret": "secretlint \"**/*\"",
+    "lint-fix": "run-p lint-fix:*",
+    "lint-fix:eslint": "eslint . --fix",
     "postinstall": "dotenv -e .env.development.local -- prisma generate",
     "start": "node server.js",
     "test": "jest",
