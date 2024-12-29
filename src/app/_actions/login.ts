@@ -1,7 +1,7 @@
 'use server';
 
 import { authErrorMessages } from '@/utils/supabase/authErrorMessages';
-import { createClient } from '@/utils/supabase/server';
+import { serverClient } from '@/utils/supabase/serverClient';
 
 type Code = keyof typeof authErrorMessages;
 
@@ -18,7 +18,7 @@ type Error = {
 };
 
 export async function login(prevState: unknown, formData: FormData): Promise<User | Error> {
-  const supabase = await createClient();
+  const supabase = await serverClient();
 
   const { data, error } = await supabase.auth.signInWithPassword({
     email: formData.get('email') as string,

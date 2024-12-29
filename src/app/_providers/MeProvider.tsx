@@ -1,10 +1,9 @@
 'use client';
 
+import { type User } from '@supabase/supabase-js';
 import { createContext, Dispatch, PropsWithChildren, SetStateAction, useState } from 'react';
 
-type Me = {
-  id?: string;
-} | null;
+type Me = User | null;
 
 type MeProviderProps = PropsWithChildren<{
   me: Me;

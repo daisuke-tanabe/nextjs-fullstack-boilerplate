@@ -8,7 +8,7 @@ import { ReactNode } from 'react';
 
 import { NavigationHeader } from '@/app/_components/NavigationHeader/NavigationHeader';
 import { MeProvider } from '@/app/_providers/MeProvider';
-import { createClient } from '@/utils/supabase/server';
+import { serverClient } from '@/utils/supabase/serverClient';
 
 import theme from './_lib/theme';
 
@@ -33,7 +33,7 @@ export default async function Layout({
   children: ReactNode;
   auth: ReactNode;
 }>) {
-  const supabase = await createClient();
+  const supabase = await serverClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -45,11 +45,11 @@ export default async function Layout({
       </Head>
       <body className={roboto.variable}>
         <InitColorSchemeScript attribute="class" />
-        <MeProvider me={{ id: user?.id }}>
+        <MeProvider me={user}>
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme} defaultMode="system">
               <CssBaseline />
-              <NavigationHeader user={user} />
+              <NavigationHeader />
               {children}
               {auth}
             </ThemeProvider>

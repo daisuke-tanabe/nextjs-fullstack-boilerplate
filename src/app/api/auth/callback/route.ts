@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 // The client you created from the Server-Side Auth instructions
-import { createClient } from '@/utils/supabase/server';
+import { serverClient } from '@/utils/supabase/serverClient';
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -10,7 +10,7 @@ export async function GET(request: Request) {
   const next = searchParams.get('next') ?? '/';
 
   if (code) {
-    const supabase = await createClient();
+    const supabase = await serverClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     // TODO: あとで消す

@@ -1,10 +1,10 @@
 import { Icon } from '@iconify/react';
 import IconButton from '@mui/material/IconButton';
 
-import { createClient } from '@/utils/supabase/client';
+import { browserClient } from '@/utils/supabase/browserClient';
 
 export function SocialButtons() {
-  const supabase = createClient();
+  const supabase = browserClient();
 
   const handleClick = async () => {
     await supabase.auth.signInWithOAuth({

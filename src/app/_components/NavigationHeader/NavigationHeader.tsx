@@ -1,25 +1,25 @@
 'use client';
 
+import PersonIcon from '@mui/icons-material/Person';
+import { Avatar } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { User } from '@supabase/supabase-js';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { signout } from '@/app/_actions/signout';
+import { useMe } from '@/app/_hooks/useMe';
 
 import { UIModeSwitch } from './UIModeSwitch';
 
-type NavigationHeaderProps = {
-  user: User | null;
-};
-
-export function NavigationHeader({ user }: NavigationHeaderProps) {
+export function NavigationHeader() {
   const pathname = usePathname();
+  const { me } = useMe();
 
   if (pathname === '/signup') return null;
 
@@ -36,10 +36,20 @@ export function NavigationHeader({ user }: NavigationHeaderProps) {
             </Link>
           </Typography>
 
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
             <UIModeSwitch />
-            {user ? (
-              <Button onClick={() => void signout()}>Signout</Button>
+            {me ? (
+              <>
+                <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+                  <IconButton component={NextLink} href={`/users/${me.id}`} sx={{ p: 0 }}>
+                    <Avatar sx={{ width: 32, height: 32 }}>
+                      <PersonIcon />
+                    </Avatar>
+                  </IconButton>
+                  <Typography color="text.primary">{me.email}</Typography>
+                </Stack>
+                <Button onClick={() => void signout()}>Signout</Button>
+              </>
             ) : (
               <>
                 <Button
