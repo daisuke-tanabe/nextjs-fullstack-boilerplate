@@ -1,18 +1,17 @@
 'use client';
 
-import { Icon } from '@iconify/react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import NextForm from 'next/form';
 
 import { CustomTextField } from '@/ui/CustomTextField';
+import { SocialButtons } from '@/ui/SocialButtons';
 
 type User = {
   id: string | undefined;
@@ -25,8 +24,6 @@ type Error = {
     status?: number;
   };
 };
-
-const socialIcons = ['devicon:google', 'logos:facebook', 'simple-icons:apple'];
 
 export function Signup({
   formState,
@@ -89,16 +86,7 @@ export function Signup({
         <Divider sx={{ flex: 1, borderColor: 'grey.400' }} />
       </Stack>
 
-      <Stack direction="row" spacing={2} sx={{ justifyContent: 'center' }}>
-        {socialIcons.map((icon) => (
-          <IconButton
-            key={icon}
-            sx={{ borderStyle: 'solid', borderRadius: 2, borderWidth: 2, borderColor: 'grey.400' }}
-          >
-            <Icon icon={icon} width={24} />
-          </IconButton>
-        ))}
-      </Stack>
+      <SocialButtons />
 
       <Typography sx={{ textAlign: 'center' }}>
         Already have an account?&nbsp;
