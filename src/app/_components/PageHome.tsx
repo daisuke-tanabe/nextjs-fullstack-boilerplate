@@ -2,28 +2,17 @@
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
 import NextLink from 'next/link';
 
-type PageHomeProps = {
-  email?: string;
-};
+import { useMe } from '@/app/_hooks/useMe';
 
-export function PageHome({ email }: PageHomeProps) {
+export function PageHome() {
+  const { me } = useMe();
+
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        bgcolor: 'background.default',
-        color: 'text.primary',
-        borderRadius: 1,
-        p: 3,
-        minHeight: '56px',
-      }}
-    >
-      {email ? <Box>Your email: {email}</Box> : <Box>Not logged in</Box>}
+    <Stack>
+      {me?.id ? <Box>Your ID: {me.id}</Box> : <Box>Not logged in</Box>}
       <Box>
         <Link component={NextLink} href="/posts/1">
           /posts/1
@@ -34,6 +23,6 @@ export function PageHome({ email }: PageHomeProps) {
           /posts/2
         </Link>
       </Box>
-    </Box>
+    </Stack>
   );
 }

@@ -7,6 +7,7 @@ import Head from 'next/head';
 import { ReactNode } from 'react';
 
 import { NavigationHeader } from '@/app/_components/NavigationHeader/NavigationHeader';
+import { MeProvider } from '@/app/_providers/MeProvider';
 import { createClient } from '@/utils/supabase/server';
 
 import theme from './_lib/theme';
@@ -44,14 +45,16 @@ export default async function Layout({
       </Head>
       <body className={roboto.variable}>
         <InitColorSchemeScript attribute="class" />
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme} defaultMode="system">
-            <CssBaseline />
-            <NavigationHeader user={user} />
-            {children}
-            {auth}
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <MeProvider me={{ id: user?.id }}>
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={theme} defaultMode="system">
+              <CssBaseline />
+              <NavigationHeader user={user} />
+              {children}
+              {auth}
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </MeProvider>
       </body>
     </html>
   );
