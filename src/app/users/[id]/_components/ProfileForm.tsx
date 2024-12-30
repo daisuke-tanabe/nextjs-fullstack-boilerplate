@@ -7,7 +7,7 @@ import { User } from '@supabase/supabase-js';
 import NextForm from 'next/form';
 import { useActionState } from 'react';
 
-import { CustomTextField } from '@/ui/CustomTextField';
+import { CustomTextField } from '@/app/_ui/CustomTextField';
 
 import { update } from '../_actions/update';
 

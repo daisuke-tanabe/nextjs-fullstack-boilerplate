@@ -8,8 +8,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import NextForm from 'next/form';
 
-import { CustomTextField } from '@/ui/CustomTextField';
-import { SocialButtons } from '@/ui/SocialButtons';
+import { CustomTextField } from '@/app/_ui/CustomTextField';
+import { GoogleAuthButton } from '@/app/_ui/GoogleAuthButton';
 
 type User = {
   id: string | undefined;
@@ -67,7 +67,7 @@ export function Signup({
         <Divider sx={{ flex: 1, borderColor: 'grey.400' }} />
       </Stack>
 
-      <SocialButtons />
+      <GoogleAuthButton />
 
       <Typography sx={{ textAlign: 'center' }}>
         Already have an account?&nbsp;

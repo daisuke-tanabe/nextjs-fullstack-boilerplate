@@ -10,8 +10,8 @@ import Typography from '@mui/material/Typography';
 import NextForm from 'next/form';
 import NextLink from 'next/link';
 
-import { CustomTextField } from '@/ui/CustomTextField';
-import { SocialButtons } from '@/ui/SocialButtons';
+import { CustomTextField } from '@/app/_ui/CustomTextField';
+import { GoogleAuthButton } from '@/app/_ui/GoogleAuthButton';
 
 type User = {
   id: string;
@@ -73,7 +73,7 @@ export function Login({
         <Divider sx={{ flex: 1, borderColor: 'grey.400' }} />
       </Stack>
 
-      <SocialButtons />
+      <GoogleAuthButton />
 
       <Typography sx={{ textAlign: 'center' }}>
         Need to create an account?&nbsp;
