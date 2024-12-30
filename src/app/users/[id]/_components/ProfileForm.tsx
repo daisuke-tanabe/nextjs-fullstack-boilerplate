@@ -12,7 +12,11 @@ import { CustomTextField } from '@/ui/CustomTextField';
 import { update } from '../_actions/update';
 
 type ProfileFormProps = {
-  me: User;
+  me: User & {
+    user_metadata: {
+      display_name?: string | undefined;
+    };
+  };
 };
 
 export function ProfileForm({ me }: ProfileFormProps) {
@@ -20,6 +24,7 @@ export function ProfileForm({ me }: ProfileFormProps) {
     id: me.id,
     email: me.email,
     newEmail: me.new_email,
+    displayName: me.user_metadata.display_name,
   });
 
   return (
@@ -34,6 +39,14 @@ export function ProfileForm({ me }: ProfileFormProps) {
           type="email"
           placeholder="Enter your email"
           defaultValue={me.new_email}
+        />
+        <CustomTextField
+          label="Display name"
+          id="displayName"
+          name="displayName"
+          type="text"
+          placeholder="Enter your display name"
+          defaultValue={me.user_metadata.display_name}
         />
         <input type="hidden" name="id" defaultValue={me.id} />
         {'error' in formState && <Alert severity="error">{formState.error.message}</Alert>}

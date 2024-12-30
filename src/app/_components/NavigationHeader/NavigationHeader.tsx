@@ -46,7 +46,7 @@ export function NavigationHeader() {
                       <PersonIcon />
                     </Avatar>
                   </IconButton>
-                  <Typography color="text.primary">{me.email}</Typography>
+                  <Typography color="text.primary">{me.user_metadata.display_name || me.email}</Typography>
                 </Stack>
                 <Button onClick={() => void signout()}>Signout</Button>
               </>

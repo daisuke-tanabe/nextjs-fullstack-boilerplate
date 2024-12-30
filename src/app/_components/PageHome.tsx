@@ -1,14 +1,15 @@
-'use client';
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import NextLink from 'next/link';
 
-import { useMe } from '@/app/_hooks/useMe';
+import { serverClient } from '@/utils/supabase/serverClient';
 
-export function PageHome() {
-  const { me } = useMe();
+export async function PageHome() {
+  const serverSupabase = await serverClient();
+  const {
+    data: { user: me },
+  } = await serverSupabase.auth.getUser();
 
   return (
     <Stack>

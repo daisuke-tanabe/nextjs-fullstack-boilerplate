@@ -9,6 +9,7 @@ type User = {
   id: string;
   email: string | undefined;
   newEmail?: string | undefined;
+  displayName?: string | undefined;
 };
 
 type Error = {
@@ -23,10 +24,12 @@ export async function update(prevState: unknown, formData: FormData): Promise<Us
 
   const id = formData.get('id') as string;
   const newEmail = formData.get('newEmail') as string;
+  const display_name = formData.get('displayName') as string;
 
   const { data, error } = await supabase.auth.updateUser(
     {
-      email: newEmail,
+      ...(newEmail && { email: newEmail }),
+      data: { display_name },
     },
     {
       emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/users/${id}`,
@@ -46,5 +49,6 @@ export async function update(prevState: unknown, formData: FormData): Promise<Us
     id: data.user.id,
     email: data.user.email,
     newEmail: data.user.new_email,
+    displayName: data.user.user_metadata.display_name as string | undefined,
   };
 }
