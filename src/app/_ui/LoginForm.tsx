@@ -9,31 +9,15 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import NextForm from 'next/form';
 import NextLink from 'next/link';
+import { useActionState } from 'react';
 
+import { login } from '@/app/_actions/login';
 import { CustomTextField } from '@/app/_ui/CustomTextField';
 import { GoogleAuthButton } from '@/app/_ui/GoogleAuthButton';
 
-type User = {
-  id: string;
-  email: string | undefined;
-};
+export function LoginForm() {
+  const [formState, formAction, isFormLoading] = useActionState(login, null);
 
-type Error = {
-  error: {
-    message: string;
-    status?: number;
-  };
-};
-
-export function Login({
-  formState,
-  formAction,
-  isFormLoading,
-}: {
-  formState: User | Error | null;
-  formAction: (payload: FormData) => void;
-  isFormLoading: boolean;
-}) {
   return (
     <Stack spacing={2}>
       <NextForm action={formAction} noValidate>

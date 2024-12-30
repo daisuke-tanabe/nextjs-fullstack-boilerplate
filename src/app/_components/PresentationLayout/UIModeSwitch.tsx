@@ -2,7 +2,6 @@
 
 import { styled, useColorScheme } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { ChangeEvent, useEffect } from 'react';
 
 const ThemeSwitch = styled(Switch)(({ theme }) => ({
@@ -63,16 +62,18 @@ const ThemeSwitch = styled(Switch)(({ theme }) => ({
 
 export function UIModeSwitch() {
   const { mode, setMode } = useColorScheme();
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const isDarkMode = mode === 'dark';
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setMode(event.target.checked ? 'dark' : 'light');
+    const currentUiMode = event.target.checked ? 'dark' : 'light';
+    setMode(currentUiMode);
+    localStorage.setItem('ui-mode', currentUiMode);
   };
 
   useEffect(() => {
-    setMode(prefersDarkMode ? 'dark' : 'light');
-  }, [prefersDarkMode]);
+    const uiMode = localStorage.getItem('ui-mode') as 'light' | 'dark' | 'system' | null;
+    setMode(uiMode ?? 'system');
+  }, []);
 
   return <ThemeSwitch checked={isDarkMode} onChange={handleChange} />;
 }

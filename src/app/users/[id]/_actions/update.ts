@@ -6,9 +6,7 @@ import { serverClient } from '@/utils/supabase/serverClient';
 type Code = keyof typeof authErrorMessages;
 
 type User = {
-  id: string;
-  email: string | undefined;
-  newEmail?: string | undefined;
+  newEmail: string | undefined;
   displayName?: string | undefined;
 };
 
@@ -28,7 +26,7 @@ export async function update(prevState: unknown, formData: FormData): Promise<Us
 
   const { data, error } = await supabase.auth.updateUser(
     {
-      ...(newEmail && { email: newEmail }),
+      email: newEmail,
       data: { display_name },
     },
     {
@@ -46,8 +44,6 @@ export async function update(prevState: unknown, formData: FormData): Promise<Us
   }
 
   return {
-    id: data.user.id,
-    email: data.user.email,
     newEmail: data.user.new_email,
     displayName: data.user.user_metadata.display_name as string | undefined,
   };

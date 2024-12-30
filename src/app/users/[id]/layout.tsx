@@ -2,6 +2,8 @@ import { PropsWithChildren } from 'react';
 
 import { serverClient } from '@/utils/supabase/serverClient';
 
+import { PresentationLayout } from './_components/PresentationLayout';
+
 type LayoutProps = PropsWithChildren<{
   params: Promise<{
     id: string;
@@ -15,8 +17,7 @@ export default async function Layout({ children, params }: LayoutProps) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // 自身のJWTセッションと違うユーザー情報は閲覧させない
   if (id !== user?.id) return <div>403</div>;
 
-  return children;
+  return <PresentationLayout>{children}</PresentationLayout>;
 }
