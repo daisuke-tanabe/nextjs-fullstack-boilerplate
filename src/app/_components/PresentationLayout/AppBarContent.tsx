@@ -13,7 +13,7 @@ import { UIModeSwitch } from '@/app/_components/PresentationLayout/UIModeSwitch'
 import { serverClient } from '@/utils/supabase/serverClient';
 
 export async function AppBarContent() {
-  const supabase = await serverClient({ next: { tags: ['user'] }, cache: 'force-cache' });
+  const supabase = await serverClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

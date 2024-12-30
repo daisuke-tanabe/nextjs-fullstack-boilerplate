@@ -8,7 +8,7 @@ import NextLink from 'next/link';
 import { serverClient } from '@/utils/supabase/serverClient';
 
 export async function MeButton() {
-  const supabase = await serverClient({ next: { tags: ['user'] }, cache: 'force-cache' });
+  const supabase = await serverClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

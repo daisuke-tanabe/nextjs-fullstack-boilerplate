@@ -8,13 +8,13 @@ import { serverClient } from '@/utils/supabase/serverClient';
 import { ProfileForm } from './_components/ProfileForm';
 
 export default async function Page() {
-  const serverSupabase = await serverClient();
+  const supabase = await serverClient();
   const {
-    data: { user: me },
-  } = await serverSupabase.auth.getUser();
+    data: { user },
+  } = await supabase.auth.getUser();
 
   // TODO: エラーハンドリングは後で考える
-  if (!me) return null;
+  if (!user) return null;
 
   return (
     <Container
@@ -32,12 +32,12 @@ export default async function Page() {
           <Typography sx={{ fontSize: 'h5.fontSize', fontWeight: 'bold', textAlign: 'center' }}>Me</Typography>
           <Typography sx={{ textAlign: 'center' }}>Your profile information</Typography>
         </Stack>
-        {me.new_email && (
+        {user.new_email && (
           <Alert severity="warning">
             メールアドレスの変更が完了していません。変更前と変更後のメールをご確認ください。
           </Alert>
         )}
-        <ProfileForm me={me} />
+        <ProfileForm me={user} />
       </Stack>
     </Container>
   );

@@ -10,14 +10,13 @@ type LayoutProps = PropsWithChildren<{
 
 export default async function Layout({ children, params }: LayoutProps) {
   const { id } = await params;
-
-  const serverSupabase = await serverClient();
+  const supabase = await serverClient();
   const {
-    data: { user: me },
-  } = await serverSupabase.auth.getUser();
+    data: { user },
+  } = await supabase.auth.getUser();
 
   // 自身のJWTセッションと違うユーザー情報は閲覧させない
-  if (id !== me?.id) return <div>403</div>;
+  if (id !== user?.id) return <div>403</div>;
 
   return children;
 }

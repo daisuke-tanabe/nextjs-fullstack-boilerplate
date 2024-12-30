@@ -1,7 +1,5 @@
 'use server';
 
-import { revalidateTag } from 'next/cache';
-
 import { authErrorMessages } from '@/utils/supabase/authErrorMessages';
 import { serverClient } from '@/utils/supabase/serverClient';
 
@@ -46,8 +44,6 @@ export async function update(prevState: unknown, formData: FormData): Promise<Us
       },
     };
   }
-
-  revalidateTag('user');
 
   return {
     id: data.user.id,
