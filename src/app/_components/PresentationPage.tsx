@@ -5,8 +5,8 @@ import NextLink from 'next/link';
 
 import { serverClient } from '@/utils/supabase/serverClient';
 
-export async function PageHome() {
-  const serverSupabase = await serverClient();
+export async function PresentationPage() {
+  const serverSupabase = await serverClient({ next: { tags: ['user'] }, cache: 'force-cache' });
   const {
     data: { user: me },
   } = await serverSupabase.auth.getUser();

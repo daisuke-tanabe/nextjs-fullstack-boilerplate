@@ -1,5 +1,5 @@
-import { PageHome } from './_components/PageHome';
+import { PresentationPage } from './_components/PresentationPage';
 
 export default function Home() {
-  return <PageHome />;
+  return <PresentationPage />;
 }

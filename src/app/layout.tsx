@@ -6,9 +6,7 @@ import { Roboto } from 'next/font/google';
 import Head from 'next/head';
 import { ReactNode } from 'react';
 
-import { NavigationHeader } from '@/app/_components/NavigationHeader/NavigationHeader';
-import { MeProvider } from '@/app/_providers/MeProvider';
-import { serverClient } from '@/utils/supabase/serverClient';
+import { PresentationLayout } from '@/app/_components/PresentationLayout';
 
 import theme from './_lib/theme';
 
@@ -26,18 +24,13 @@ const roboto = Roboto({
   variable: '--font-roboto',
 });
 
-export default async function Layout({
+export default function Layout({
   children,
   auth,
 }: Readonly<{
   children: ReactNode;
   auth: ReactNode;
 }>) {
-  const supabase = await serverClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
   return (
     <html lang="en" suppressHydrationWarning>
       <Head>
@@ -45,16 +38,12 @@ export default async function Layout({
       </Head>
       <body className={roboto.variable}>
         <InitColorSchemeScript attribute="class" />
-        <MeProvider me={user}>
-          <AppRouterCacheProvider>
-            <ThemeProvider theme={theme} defaultMode="system">
-              <CssBaseline />
-              <NavigationHeader />
-              {children}
-              {auth}
-            </ThemeProvider>
-          </AppRouterCacheProvider>
-        </MeProvider>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme} defaultMode="system">
+            <CssBaseline />
+            <PresentationLayout auth={auth}>{children}</PresentationLayout>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
