@@ -1,14 +1,11 @@
 'use server';
 
+import { User } from '@supabase/supabase-js';
+
 import { authErrorMessages } from '@/utils/supabase/authErrorMessages';
 import { serverClient } from '@/utils/supabase/serverClient';
 
 type Code = keyof typeof authErrorMessages;
-
-type User = {
-  id: string;
-  email: string | undefined;
-};
 
 type Error = {
   error: {
@@ -34,8 +31,5 @@ export async function login(prevState: unknown, formData: FormData): Promise<Use
     };
   }
 
-  return {
-    id: data.user.id,
-    email: data.user.email,
-  };
+  return data.user;
 }

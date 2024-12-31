@@ -9,14 +9,33 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import NextForm from 'next/form';
 import NextLink from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useActionState } from 'react';
 
 import { login } from '@/app/_actions/login';
+import { useMe } from '@/app/_hooks/useMe';
 import { CustomTextField } from '@/app/_ui/CustomTextField';
 import { GoogleAuthButton } from '@/app/_ui/GoogleAuthButton';
 
 export function LoginForm() {
-  const [formState, formAction, isFormLoading] = useActionState(login, null);
+  const { setMe } = useMe();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const fromParam = searchParams.get('from');
+
+  const [formState, formAction, isFormLoading] = useActionState(async (state: unknown, payload: FormData) => {
+    const user = await login(state, payload);
+    if ('id' in user) {
+      setMe({
+        id: user.id,
+        email: user.email,
+        newEmail: user.new_email,
+        displayName: user.user_metadata.display_name as string | undefined,
+      });
+      router.push(fromParam ?? '/');
+    }
+    return user;
+  }, null);
 
   return (
     <Stack spacing={2}>
