@@ -13,11 +13,13 @@ export function SignOutButton() {
 
   const supabase = browserClient();
 
+  if (!me) return null;
+
   const handleSignout = async () => {
     await supabase.auth.signOut();
     setMe(null);
     // 自身のユーザーページでサインアウトした際はホームに戻す
-    if (pathname === `/users/${me?.id ?? ''}`) router.push('/');
+    if (pathname.includes(`/users/${me.id}`)) router.push('/');
   };
 
   return <Button onClick={() => void handleSignout()}>Signout</Button>;
