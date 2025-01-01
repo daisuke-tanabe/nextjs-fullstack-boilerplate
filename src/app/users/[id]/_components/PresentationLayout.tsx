@@ -1,7 +1,10 @@
 'use client';
 
-import Box from '@mui/material/Box';
+import PersonIcon from '@mui/icons-material/Person';
+import Avatar from '@mui/material/Avatar';
 import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { PropsWithChildren } from 'react';
 
 import { useMe } from '@/app/_hooks/useMe';
@@ -19,10 +22,13 @@ export function PresentationLayout({ children }: PropsWithChildren) {
           bgcolor: '#f6f6f6',
           flex: 1,
           px: {
-            xs: 0,
-            sm: 3,
+            xs: 1,
+            sm: 2,
           },
-          py: 3,
+          py: {
+            xs: 1,
+            sm: 2,
+          },
         },
         (theme) =>
           theme.applyStyles('dark', {
@@ -30,32 +36,32 @@ export function PresentationLayout({ children }: PropsWithChildren) {
           }),
       ]}
     >
-      <Box
-        sx={[
-          {
-            bgcolor: 'common.white',
-            borderRadius: {
-              xs: 0,
-              sm: 2,
-            },
-            maxWidth: {
-              xs: '100%',
-              sm: 428,
-            },
-            mx: 'auto',
-            p: {
-              xs: 2,
-              sm: 3,
-            },
+      <Stack
+        spacing={2}
+        sx={{
+          maxWidth: {
+            xs: '100%',
+            sm: 640,
           },
-          (theme) =>
-            theme.applyStyles('dark', {
-              bgcolor: '#212121',
-            }),
-        ]}
+          mx: 'auto',
+        }}
       >
+        <Stack spacing={2} sx={{ alignItems: 'center' }}>
+          <Avatar sx={{ width: 64, height: 64 }}>
+            <PersonIcon sx={{ width: 48, height: 48 }} />
+          </Avatar>
+          <Typography
+            sx={{
+              fontSize: 'h6.fontSize',
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}
+          >
+            {me.displayName ? me.displayName : '名称未設定'}
+          </Typography>
+        </Stack>
         {children}
-      </Box>
+      </Stack>
     </Container>
   );
 }

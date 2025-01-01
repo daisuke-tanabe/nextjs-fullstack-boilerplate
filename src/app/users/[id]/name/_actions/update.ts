@@ -6,7 +6,6 @@ import { serverClient } from '@/utils/supabase/serverClient';
 type Code = keyof typeof authErrorMessages;
 
 type User = {
-  newEmail: string | undefined;
   displayName?: string | undefined;
 };
 
@@ -21,13 +20,13 @@ export async function update(prevState: unknown, formData: FormData): Promise<Us
   const supabase = await serverClient();
 
   const id = formData.get('id') as string;
-  const newEmail = formData.get('newEmail') as string;
-  const display_name = formData.get('displayName') as string;
+  const displayName = formData.get('displayName') as string;
 
   const { data, error } = await supabase.auth.updateUser(
     {
-      email: newEmail,
-      data: { display_name },
+      data: {
+        display_name: displayName,
+      },
     },
     {
       emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/users/${id}`,
@@ -44,7 +43,6 @@ export async function update(prevState: unknown, formData: FormData): Promise<Us
   }
 
   return {
-    newEmail: data.user.new_email,
     displayName: data.user.user_metadata.display_name as string | undefined,
   };
 }
