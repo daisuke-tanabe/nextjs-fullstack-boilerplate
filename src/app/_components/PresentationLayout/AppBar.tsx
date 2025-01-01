@@ -12,7 +12,6 @@ import { LoginButton } from '@/app/_components/PresentationLayout/LoginButton';
 import { MeButton } from '@/app/_components/PresentationLayout/MeButton';
 import { SignOutButton } from '@/app/_components/PresentationLayout/SignOutButton';
 import { SignupButton } from '@/app/_components/PresentationLayout/SignupButton';
-import { UIModeSwitch } from '@/app/_components/PresentationLayout/UIModeSwitch';
 import { useMe } from '@/app/_hooks/useMe';
 
 export function AppBar() {
@@ -35,7 +34,6 @@ export function AppBar() {
           </Typography>
 
           <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
-            <UIModeSwitch />
             {me ? (
               <>
                 <MeButton />
