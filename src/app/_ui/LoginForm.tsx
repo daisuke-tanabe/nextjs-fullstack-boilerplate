@@ -31,6 +31,13 @@ export function LoginForm() {
         email: user.email,
         newEmail: user.new_email,
         displayName: user.user_metadata.display_name as string | undefined,
+        identities:
+          user.identities?.map(({ id, identity_id, provider, user_id }) => ({
+            id,
+            identityId: identity_id,
+            provider,
+            userId: user_id,
+          })) ?? [],
       });
       router.push(fromParam ?? '/');
     }

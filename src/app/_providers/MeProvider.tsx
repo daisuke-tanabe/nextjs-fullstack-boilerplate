@@ -8,6 +8,12 @@ type Me = {
   email: string | undefined;
   newEmail: string | undefined;
   displayName: string | undefined;
+  identities: {
+    id: string;
+    identityId: string;
+    provider: string;
+    userId: string;
+  }[];
 } | null;
 
 type MeProviderProps = PropsWithChildren<{
@@ -25,6 +31,13 @@ export function MeProvider({ children, user }: MeProviderProps) {
           email: user.email,
           newEmail: user.new_email,
           displayName: user.user_metadata.display_name as string | undefined,
+          identities:
+            user.identities?.map(({ id, identity_id, provider, user_id }) => ({
+              id,
+              identityId: identity_id,
+              provider,
+              userId: user_id,
+            })) ?? [],
         }
       : null,
   );

@@ -32,6 +32,12 @@ export function PresentationPage() {
             </AttributeListItemButton>
           </ListItem>
         </AttributeList>
+        <ListItem disablePadding>
+          <AttributeListItemButton href={`/users/${me.id}/provider`}>
+            <ListItemText primary="外部プロバイダー認証" />
+            <ChevronRightIcon />
+          </AttributeListItemButton>
+        </ListItem>
       </AttributeBox>
 
       <AttributeBox>
