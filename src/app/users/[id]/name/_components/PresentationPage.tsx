@@ -3,9 +3,7 @@
 import { Icon } from '@iconify/react';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
-import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListSubheader from '@mui/material/ListSubheader';
 import Stack from '@mui/material/Stack';
 import NextForm from 'next/form';
 import NextLink from 'next/link';
@@ -13,6 +11,7 @@ import { useActionState } from 'react';
 
 import { useMe } from '@/app/_hooks/useMe';
 import { AttributeBox } from '@/app/users/[id]/_components/AttributeBox';
+import { AttributeList } from '@/app/users/[id]/_components/AttributeList';
 import { AttributeTextField } from '@/app/users/[id]/_components/AttributeTextField';
 import { update } from '@/app/users/[id]/name/_actions/update';
 
@@ -37,16 +36,7 @@ export function PresentationPage() {
     <Stack spacing={2}>
       <AttributeBox>
         <NextForm action={formAction} noValidate>
-          <List
-            subheader={
-              <ListSubheader
-                sx={{ bgcolor: 'inherit', borderRadius: 'inherit', fontWeight: 'bold', lineHeight: '52px' }}
-              >
-                名前の変更
-              </ListSubheader>
-            }
-            sx={{ bgcolor: 'inherit', borderRadius: 'inherit', pb: 0 }}
-          >
+          <AttributeList label="名前の変更">
             <ListItem disablePadding sx={{ px: 2, py: 1 }}>
               <AttributeTextField
                 defaultValue={me.displayName}
@@ -57,7 +47,7 @@ export function PresentationPage() {
                 type="text"
               />
             </ListItem>
-          </List>
+          </AttributeList>
           <Stack spacing={2} sx={{ p: 2 }}>
             {formState && 'newEmail' in formState && <Alert severity="success">ユーザーの名称を変更しました。</Alert>}
             {formState && 'error' in formState && <Alert severity="error">{formState.error.message}</Alert>}

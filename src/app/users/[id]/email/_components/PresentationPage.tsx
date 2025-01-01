@@ -3,9 +3,7 @@
 import { Icon } from '@iconify/react';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
-import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListSubheader from '@mui/material/ListSubheader';
 import Stack from '@mui/material/Stack';
 import NextForm from 'next/form';
 import NextLink from 'next/link';
@@ -13,6 +11,7 @@ import { useActionState } from 'react';
 
 import { useMe } from '@/app/_hooks/useMe';
 import { AttributeBox } from '@/app/users/[id]/_components/AttributeBox';
+import { AttributeList } from '@/app/users/[id]/_components/AttributeList';
 import { AttributeTextField } from '@/app/users/[id]/_components/AttributeTextField';
 import { update } from '@/app/users/[id]/email/_actions/update';
 
@@ -37,16 +36,7 @@ export function PresentationPage() {
     <Stack spacing={2}>
       <AttributeBox>
         <NextForm action={formAction} noValidate>
-          <List
-            subheader={
-              <ListSubheader
-                sx={{ bgcolor: 'inherit', borderRadius: 'inherit', fontWeight: 'bold', lineHeight: '52px' }}
-              >
-                メールアドレスの変更
-              </ListSubheader>
-            }
-            sx={{ bgcolor: 'inherit', borderRadius: 'inherit', pb: 0 }}
-          >
+          <AttributeList label="メールアドレスの変更">
             <ListItem disablePadding sx={{ px: 2, py: 1 }}>
               <AttributeTextField
                 defaultValue={me.email}
@@ -67,7 +57,7 @@ export function PresentationPage() {
                 type="email"
               />
             </ListItem>
-          </List>
+          </AttributeList>
           <Stack spacing={2} sx={{ p: 2 }}>
             {formState && 'newEmail' in formState && (
               <Alert severity="success">変更前と変更後のメールアドレスに確認メールを送信しました。</Alert>
