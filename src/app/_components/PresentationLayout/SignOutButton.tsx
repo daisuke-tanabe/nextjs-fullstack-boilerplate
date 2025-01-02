@@ -22,5 +22,9 @@ export function SignOutButton() {
     if (pathname.includes(`/users/${me.id}`)) router.push('/');
   };
 
-  return <Button onClick={() => void handleSignout()}>Signout</Button>;
+  return (
+    <Button size="large" variant="outlined" onClick={() => void handleSignout()}>
+      Signout
+    </Button>
+  );
 }

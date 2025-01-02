@@ -10,7 +10,6 @@ import { usePathname } from 'next/navigation';
 
 import { LoginButton } from '@/app/_components/PresentationLayout/LoginButton';
 import { MeButton } from '@/app/_components/PresentationLayout/MeButton';
-import { SignOutButton } from '@/app/_components/PresentationLayout/SignOutButton';
 import { SignupButton } from '@/app/_components/PresentationLayout/SignupButton';
 import { useMe } from '@/app/_hooks/useMe';
 
@@ -35,10 +34,7 @@ export function AppBar() {
 
           <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
             {me ? (
-              <>
-                <MeButton />
-                <SignOutButton />
-              </>
+              <MeButton />
             ) : (
               <>
                 <LoginButton />

@@ -5,6 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 
+import { SignOutButton } from '@/app/_components/PresentationLayout/SignOutButton';
 import { useMe } from '@/app/_hooks/useMe';
 import { AttributeBox } from '@/app/users/[id]/_components/AttributeBox';
 import { AttributeList } from '@/app/users/[id]/_components/AttributeList';
@@ -16,7 +17,7 @@ export function PresentationPage() {
   if (!me) return null;
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={3}>
       <AttributeBox>
         <AttributeList label="アカウント">
           <ListItem disablePadding>
@@ -41,7 +42,7 @@ export function PresentationPage() {
       </AttributeBox>
 
       <AttributeBox>
-        <AttributeList label="外観　">
+        <AttributeList label="外観">
           <ListItem disablePadding>
             <AttributeListItemButton href={`/users/${me.id}/theme`}>
               <ListItemText primary="テーマの変更" />
@@ -50,6 +51,10 @@ export function PresentationPage() {
           </ListItem>
         </AttributeList>
       </AttributeBox>
+
+      <Stack sx={{ alignItems: 'center' }}>
+        <SignOutButton />
+      </Stack>
     </Stack>
   );
 }
