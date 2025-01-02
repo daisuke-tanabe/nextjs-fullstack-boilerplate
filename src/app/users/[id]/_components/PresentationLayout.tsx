@@ -41,7 +41,7 @@ export function PresentationLayout({ children }: PropsWithChildren) {
         sx={{
           maxWidth: {
             xs: '100%',
-            sm: 640,
+            sm: 480,
           },
           mx: 'auto',
         }}

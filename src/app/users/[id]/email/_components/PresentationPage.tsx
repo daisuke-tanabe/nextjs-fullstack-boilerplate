@@ -38,22 +38,15 @@ export function PresentationPage() {
         <NextForm action={formAction} noValidate>
           <AttributeList label="メールアドレスの変更">
             <ListItem disablePadding sx={{ px: 2, py: 1 }}>
-              <AttributeTextField
-                defaultValue={me.email}
-                disabled
-                id="email"
-                label="メールアドレス"
-                name="email"
-                type="email"
-              />
+              <AttributeTextField defaultValue={me.email} disabled id="email" label="現在" name="email" type="email" />
             </ListItem>
             <ListItem disablePadding sx={{ px: 2, py: 1 }}>
               <AttributeTextField
                 defaultValue={me.newEmail}
                 id="newEmail"
-                label="新しいメールアドレス"
+                label="変更"
                 name="newEmail"
-                placeholder="メールアドレス"
+                placeholder="新しいメールアドレス"
                 type="email"
               />
             </ListItem>
