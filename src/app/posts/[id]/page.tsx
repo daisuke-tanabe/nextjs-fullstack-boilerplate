@@ -1,3 +1,5 @@
+import Container from '@mui/material/Container';
+
 type Post = {
   id: string;
   title: string;
@@ -10,9 +12,9 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   const post = (await response.json()) as Post;
 
   return (
-    <main>
+    <Container component="main">
       <h1>{post.title}</h1>
       <p>{post.body}</p>
-    </main>
+    </Container>
   );
 }
