@@ -65,7 +65,7 @@ export function LoginForm() {
             placeholder="Enter your password"
           />
           <Box sx={{ textAlign: 'right' }}>
-            <Link component={NextLink} href="#dummyURL" underline="none">
+            <Link component={NextLink} href="/password-recovery" underline="none">
               Forgot password?
             </Link>
           </Box>
