@@ -3,19 +3,19 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import NextLink from 'next/link';
 
-export function PresentationPage() {
+export async function PresentationPage() {
+  const response = await fetch('https://dummyjson.com/posts?limit=10', { cache: 'force-cache' });
+  const { posts } = (await response.json()) as { posts: { id: string; title: string }[] };
+
   return (
     <Stack>
-      <Box>
-        <Link component={NextLink} href="/posts/1">
-          /posts/1
-        </Link>
-      </Box>
-      <Box>
-        <Link component={NextLink} href="/posts/2">
-          /posts/2
-        </Link>
-      </Box>
+      {posts.map(({ id, title }) => (
+        <Box key={id}>
+          <Link component={NextLink} href={`/posts/${id}`}>
+            {title}
+          </Link>
+        </Box>
+      ))}
     </Stack>
   );
 }
