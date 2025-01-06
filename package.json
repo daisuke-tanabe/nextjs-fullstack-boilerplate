@@ -39,7 +39,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "3.2.0",
     "@eslint/js": "9.17.0",
-    "@iconify/react": "5.1.0",
+    "@iconify/react": "5.2.0",
     "@secretlint/secretlint-rule-preset-recommend": "9.0.0",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.3",
