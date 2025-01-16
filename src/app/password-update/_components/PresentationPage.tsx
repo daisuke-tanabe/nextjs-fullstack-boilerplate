@@ -19,13 +19,9 @@ export function PresentationPage() {
       <Stack spacing={3}>
         <Stack spacing={0.5}>
           <Typography sx={{ fontSize: 'h5.fontSize', fontWeight: 'bold', textAlign: 'center' }}>
-            パスワードの回復
+            パスワードの更新
           </Typography>
-          <Typography sx={{ textAlign: 'center' }}>
-            登録したメールアドレスを入力して下さい。
-            <br />
-            パスワードを設定するためのURLをお送りします。
-          </Typography>
+          <Typography sx={{ textAlign: 'center' }}>新しいパスワードを入力してください</Typography>
         </Stack>
         <PasswordResetForm />
       </Stack>

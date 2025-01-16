@@ -30,7 +30,7 @@ export function PasswordResetForm() {
         </Stack>
       </NextForm>
       {formState && !('error' in formState) && typeof formState === 'object' && (
-        <Alert severity="success">新しいパスワードを送信しました。</Alert>
+        <Alert severity="success">パスワードを更新しました</Alert>
       )}
       {formState && 'error' in formState && <Alert severity="error">{formState.error.message}</Alert>}
     </Stack>
