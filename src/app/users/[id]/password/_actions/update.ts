@@ -15,9 +15,9 @@ type Error = {
 export async function update(prevState: unknown, formData: FormData): Promise<object | null | Error> {
   const supabase = await serverClient();
 
-  const { data, error } = await supabase.auth.resetPasswordForEmail(formData.get('email') as string, {
-    redirectTo: `${process.env.NEXT_PUBLIC_URL}/api/auth/callback?redirect_to=/__user__/password`,
-  });
+  const password = formData.get('password') as string;
+
+  const { data, error } = await supabase.auth.updateUser({ password });
 
   if (error) {
     return {

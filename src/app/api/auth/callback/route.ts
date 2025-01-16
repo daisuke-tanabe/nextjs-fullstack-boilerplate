@@ -6,23 +6,24 @@ import { serverClient } from '@/utils/supabase/serverClient';
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get('code');
-  // if "next" is in param, use it as the redirect URL
-  const redirectTo = searchParams.get('redirect_to') ?? '/';
 
   if (code) {
     const supabase = await serverClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+    // if "next" is in param, use it as the redirect URL
+    const redirectTo = searchParams.get('redirect_to') ?? '/';
+    const replacedRedirectTo = redirectTo.replace('__user__', data.user?.id ? `users/${data.user.id}` : '');
 
     if (!error) {
       const forwardedHost = request.headers.get('x-forwarded-host'); // original origin before load balancer
       const isLocalEnv = process.env.NODE_ENV === 'development';
       if (isLocalEnv) {
         // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
-        return NextResponse.redirect(`${origin}${redirectTo}`);
+        return NextResponse.redirect(`${origin}${replacedRedirectTo}`);
       } else if (forwardedHost) {
-        return NextResponse.redirect(`https://${forwardedHost}${redirectTo}`);
+        return NextResponse.redirect(`https://${forwardedHost}${replacedRedirectTo}`);
       } else {
-        return NextResponse.redirect(`${origin}${redirectTo}`);
+        return NextResponse.redirect(`${origin}${replacedRedirectTo}`);
       }
     }
   }

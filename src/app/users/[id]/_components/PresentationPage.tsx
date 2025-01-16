@@ -27,6 +27,12 @@ export function PresentationPage() {
             </AttributeListItemButton>
           </ListItem>
           <ListItem disablePadding>
+            <AttributeListItemButton href={`/users/${me.id}/password`}>
+              <ListItemText primary="パスワードの変更" />
+              <ChevronRightIcon />
+            </AttributeListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
             <AttributeListItemButton href={`/users/${me.id}/name`}>
               <ListItemText primary="名前の変更" />
               <ChevronRightIcon />
