@@ -47,17 +47,6 @@ export function PresentationPage() {
         </ListItem>
       </AttributeBox>
 
-      <AttributeBox>
-        <AttributeList label="外観">
-          <ListItem disablePadding>
-            <AttributeListItemButton href={`/users/${me.id}/theme`}>
-              <ListItemText primary="テーマの変更" />
-              <ChevronRightIcon />
-            </AttributeListItemButton>
-          </ListItem>
-        </AttributeList>
-      </AttributeBox>
-
       <Stack sx={{ alignItems: 'center' }}>
         <SignOutButton />
       </Stack>
