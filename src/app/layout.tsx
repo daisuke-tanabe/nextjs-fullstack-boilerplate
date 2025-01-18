@@ -28,7 +28,6 @@ const roboto = Roboto({
 
 export default async function Layout({
   children,
-  auth,
 }: Readonly<{
   children: ReactNode;
   auth: ReactNode;
@@ -49,7 +48,7 @@ export default async function Layout({
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme} defaultMode="system">
               <CssBaseline />
-              <PresentationLayout auth={auth}>{children}</PresentationLayout>
+              <PresentationLayout>{children}</PresentationLayout>
             </ThemeProvider>
           </AppRouterCacheProvider>
         </MeProvider>

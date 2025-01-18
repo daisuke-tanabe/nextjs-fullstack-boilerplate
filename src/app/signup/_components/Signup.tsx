@@ -7,6 +7,7 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import NextForm from 'next/form';
+import NextLink from 'next/link';
 
 import { CustomTextField } from '@/app/_ui/CustomTextField';
 import { GoogleAuthButton } from '@/app/_ui/GoogleAuthButton';
@@ -71,7 +72,7 @@ export function Signup({
 
       <Typography sx={{ textAlign: 'center' }}>
         Already have an account?&nbsp;
-        <Link component="a" href="/login">
+        <Link component={NextLink} href="/login" underline="hover">
           Log In
         </Link>
       </Typography>

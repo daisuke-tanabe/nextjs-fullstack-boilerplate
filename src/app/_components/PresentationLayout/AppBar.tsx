@@ -13,6 +13,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { Avatar, ListItemIcon } from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import IconButton from '@mui/material/IconButton';
@@ -31,8 +32,6 @@ import NextLink from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, MouseEvent, ChangeEvent, useEffect } from 'react';
 
-import { LoginButton } from '@/app/_components/PresentationLayout/LoginButton';
-import { SignupButton } from '@/app/_components/PresentationLayout/SignupButton';
 import { useMe } from '@/app/_hooks/useMe';
 import { browserClient } from '@/utils/supabase/browserClient';
 
@@ -52,6 +51,7 @@ export function AppBar() {
 
   const open = Boolean(anchorEl);
   const secondaryOpen = Boolean(secondaryAnchorEl);
+  const isCurrentLoginPath = pathname === '/login';
 
   const supabase = browserClient();
 
@@ -112,8 +112,18 @@ export function AppBar() {
           <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
             {!me && (
               <>
-                <LoginButton />
-                <SignupButton />
+                <Button
+                  component={NextLink}
+                  href="/login"
+                  variant="outlined"
+                  size="small"
+                  disabled={isCurrentLoginPath}
+                >
+                  Log&nbsp;In
+                </Button>
+                <Button component="a" href="/signup" variant="contained" size="small" disableElevation>
+                  Sign&nbsp;Up
+                </Button>
               </>
             )}
             <IconButton onClick={handleClick}>

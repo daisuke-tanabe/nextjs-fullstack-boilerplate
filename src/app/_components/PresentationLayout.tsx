@@ -4,16 +4,14 @@ import { ReactNode } from 'react';
 import { AppBar } from '@/app/_components/PresentationLayout/AppBar';
 
 type PresentationLayoutProps = Readonly<{
-  auth: ReactNode;
   children: ReactNode;
 }>;
 
-export function PresentationLayout({ auth, children }: PresentationLayoutProps) {
+export function PresentationLayout({ children }: PresentationLayoutProps) {
   return (
     <Stack sx={{ height: '100dvh' }}>
       <AppBar />
       {children}
-      {auth}
     </Stack>
   );
 }

@@ -65,7 +65,7 @@ export function LoginForm() {
             placeholder="Enter your password"
           />
           <Box sx={{ textAlign: 'right' }}>
-            <Link component={NextLink} href="/password-recovery" underline="none">
+            <Link component={NextLink} href="/password-recovery" underline="hover">
               Forgot password?
             </Link>
           </Box>
@@ -87,7 +87,9 @@ export function LoginForm() {
 
       <Typography sx={{ textAlign: 'center' }}>
         Need to create an account?&nbsp;
-        <Link href="/signup">Sign Up</Link>
+        <Link component={NextLink} href="/signup" underline="hover">
+          Sign Up
+        </Link>
       </Typography>
     </Stack>
   );
