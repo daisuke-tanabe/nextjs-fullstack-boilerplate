@@ -2,7 +2,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { LoginForm } from '@/app/_ui/LoginForm';
+import { LoginForm } from '@/app/login/_components/LoginForm';
 
 export function PresentationPage() {
   return (
