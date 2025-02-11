@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.2.0",
-    "@eslint/js": "9.19.0",
+    "@eslint/js": "9.20.0",
     "@iconify/react": "5.2.0",
     "@secretlint/secretlint-rule-preset-recommend": "9.0.0",
     "@testing-library/dom": "10.4.0",
@@ -50,7 +50,7 @@
     "@types/react-dom": "19.0.3",
     "autoprefixer": "10.4.20",
     "dotenv-cli": "8.0.0",
-    "eslint": "9.19.0",
+    "eslint": "9.20.1",
     "eslint-config-next": "15.1.6",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.31.0",
