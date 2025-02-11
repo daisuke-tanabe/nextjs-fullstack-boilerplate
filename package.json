@@ -1,6 +1,6 @@
 {
   "name": "nextjs-fullstack-boilerplate",
-  "packageManager": "pnpm@9.15.5",
+  "packageManager": "pnpm@10.3.0",
   "engines": {
     "node": "22.x"
   },
