@@ -30,7 +30,7 @@
     "@mui/material-nextjs": "6.4.3",
     "@mui/system": "6.4.3",
     "@prisma/client": "6.3.1",
-    "@supabase/ssr": "0.5.2",
+    "@supabase/ssr": "0.6.1",
     "@supabase/supabase-js": "2.48.1",
     "next": "15.1.7",
     "react": "19.0.0",
