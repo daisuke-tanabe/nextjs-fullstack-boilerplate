@@ -127,8 +127,8 @@ importers:
         specifier: 9.2.0
         version: 9.2.0
       supabase:
-        specifier: 2.15.8
-        version: 2.15.8
+        specifier: 2.19.7
+        version: 2.19.7
       ts-jest:
         specifier: 29.2.6
         version: 29.2.6(@babel/core@7.25.9)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.25.9))(jest@29.7.0(@types/node@22.13.10)(babel-plugin-macros@3.1.0))(typescript@5.8.2)
@@ -3320,8 +3320,8 @@ packages:
   stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
 
-  supabase@2.15.8:
-    resolution: {integrity: sha512-yY4kVpdd7x9u5QqTW/8zUXIrMgdkBDGqQwkDugBLe8uoFdH9tVZKt0L5RmuM21RJ0MEQkby2sQrTfiXvgGyx9w==}
+  supabase@2.19.7:
+    resolution: {integrity: sha512-+Qu5xHvk/CnAHb5iDpCWCX0SdwFR5smpTG6VUSTw/T8WxCDDQsIb2mui2pu18wqKOZ0NLs/ZTDDb2+yPejTRBQ==}
     engines: {npm: '>=8'}
     hasBin: true
 
@@ -7409,7 +7409,7 @@ snapshots:
 
   stylis@4.2.0: {}
 
-  supabase@2.15.8:
+  supabase@2.19.7:
     dependencies:
       bin-links: 5.0.0
       https-proxy-agent: 7.0.6
