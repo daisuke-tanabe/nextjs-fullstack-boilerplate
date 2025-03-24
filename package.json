@@ -37,7 +37,7 @@
     "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "3.3.0",
+    "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.22.0",
     "@iconify/react": "5.2.0",
     "@secretlint/secretlint-rule-preset-recommend": "9.2.0",
