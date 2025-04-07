@@ -64,7 +64,7 @@
     "secretlint": "9.2.0",
     "supabase": "2.19.7",
     "ts-jest": "29.2.6",
-    "typescript": "5.8.2",
+    "typescript": "5.8.3",
     "typescript-eslint": "8.21.0"
   }
 }
