@@ -58,8 +58,8 @@ importers:
         specifier: 9.27.0
         version: 9.27.0
       '@iconify/react':
-        specifier: 5.2.1
-        version: 5.2.1(react@19.1.0)
+        specifier: 6.0.0
+        version: 6.0.0(react@19.1.0)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: 9.3.3
         version: 9.3.3
@@ -462,8 +462,8 @@ packages:
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
 
-  '@iconify/react@5.2.1':
-    resolution: {integrity: sha512-37GDR3fYDZmnmUn9RagyaX+zca24jfVOMY8E1IXTqJuE8pxNtN51KWPQe3VODOWvuUurq7q9uUu3CFrpqj5Iqg==}
+  '@iconify/react@6.0.0':
+    resolution: {integrity: sha512-eqNscABVZS8eCpZLU/L5F5UokMS9mnCf56iS1nM9YYHdH8ZxqZL9zyjSwW60IOQFsXZkilbBiv+1paMXBhSQnw==}
     peerDependencies:
       react: '>=16'
 
@@ -4024,7 +4024,7 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.2': {}
 
-  '@iconify/react@5.2.1(react@19.1.0)':
+  '@iconify/react@6.0.0(react@19.1.0)':
     dependencies:
       '@iconify/types': 2.0.0
       react: 19.1.0
