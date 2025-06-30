@@ -59,7 +59,7 @@
     "jest-environment-jsdom": "29.7.0",
     "lefthook": "1.11.14",
     "npm-run-all2": "8.0.4",
-    "prettier": "3.5.3",
+    "prettier": "3.6.2",
     "prisma": "6.8.2",
     "secretlint": "9.3.4",
     "supabase": "2.26.9",
